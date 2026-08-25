@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Oasis Kafe">
+  <g fill="none" stroke="#FFFFFF" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+    <!-- copa: ancha y baja, techo redondeado -->
+    <path d="M18.6 26.5V16.4c0-4.6 5.6-7.6 13.4-7.6s13.4 3 13.4 7.6v10.1"/>
+    <!-- cinta -->
+    <path d="M18.9 20.6c8.4-2.4 17.8-2.4 26.2 0"/>
+    <!-- ala: arcos superiores solo a los lados, pasa por detras de la copa -->
+    <path d="M18.6 24.9C10.4 26 5 28 5 30.2M45.4 24.9c8.2 1.1 13.6 3.1 13.6 5.3"/>
+    <!-- ala: borde frontal -->
+    <path d="M5 30.2c0 4 12.1 7.2 27 7.2s27-3.2 27-7.2"/>
+    <!-- pliegue del ala a los lados de la cara -->
+    <path d="M10 31.8c3.7 1 9 1.7 15.4 2M54 31.8c-3.7 1-9 1.7-15.4 2"/>
+    <!-- cara -->
+    <path d="M26.2 26.8c0 8.3 2.6 13.4 5.8 13.4s5.8-5.1 5.8-13.4"/>
+    <!-- cuerpo -->
+    <path d="M24.6 39.4v14.4M39.4 39.4v14.4"/>
+  </g>
+  <!-- labios -->
+  <path d="M29.7 33.3c1.5-1 3.1-1 4.6 0-1.5 1.6-3.1 1.6-4.6 0z" fill="#FFFFFF"/>
+</svg>

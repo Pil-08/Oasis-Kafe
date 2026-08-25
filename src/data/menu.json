@@ -1,0 +1,784 @@
+{
+  "_comentario": "Fuente unica de la carta. Editable por el negocio sin tocar codigo. price=null => se muestra 'Consultar'.",
+  "config": {
+    "porcion": {
+      "precio": 3.45,
+      "gramos": 150,
+      "porTarta": 6
+    },
+    "moneda": "EUR",
+    "locale": "es-ES"
+  },
+  "etiquetas": {
+    "sin_azucar_anadida": {
+      "es": "Sin azúcar añadido",
+      "eu": "Gehitutako azukririk gabe",
+      "en": "No added sugar",
+      "fr": "Sans sucre ajouté"
+    },
+    "vegano": {
+      "es": "Vegano",
+      "eu": "Begana",
+      "en": "Vegan",
+      "fr": "Vegan"
+    }
+  },
+  "categorias": [
+    {
+      "id": "cafes",
+      "label": {
+        "es": "Café Oasis",
+        "eu": "Oasis kafea",
+        "en": "Oasis coffee",
+        "fr": "Café Oasis"
+      },
+      "items": [
+        {
+          "id": "expresso",
+          "name": {
+            "es": "Expresso",
+            "en": "Espresso"
+          },
+          "price": 1.7,
+          "unit": "und"
+        },
+        {
+          "id": "cortado",
+          "name": {
+            "es": "Cortado"
+          },
+          "price": 1.7,
+          "unit": "und"
+        },
+        {
+          "id": "americano",
+          "name": {
+            "es": "Americano"
+          },
+          "price": 1.8,
+          "unit": "und"
+        },
+        {
+          "id": "cafe_leche",
+          "name": {
+            "es": "Café con leche",
+            "eu": "Esnegain kafea",
+            "en": "White coffee",
+            "fr": "Café au lait"
+          },
+          "price": 1.9,
+          "unit": "und"
+        },
+        {
+          "id": "capuccino",
+          "name": {
+            "es": "Capuccino",
+            "en": "Cappuccino"
+          },
+          "price": 2.1,
+          "unit": "und"
+        },
+        {
+          "id": "cafe_doble",
+          "name": {
+            "es": "Café doble",
+            "en": "Double espresso",
+            "fr": "Café double"
+          },
+          "price": 2.3,
+          "unit": "und"
+        },
+        {
+          "id": "long_black",
+          "name": {
+            "es": "Long black"
+          },
+          "price": 2.5,
+          "unit": "und"
+        },
+        {
+          "id": "mokaccino",
+          "name": {
+            "es": "Mokaccino"
+          },
+          "price": 2.7,
+          "unit": "und"
+        },
+        {
+          "id": "flat_white",
+          "name": {
+            "es": "Flat white"
+          },
+          "price": 2.9,
+          "unit": "und"
+        },
+        {
+          "id": "afogato",
+          "name": {
+            "es": "Afogato",
+            "en": "Affogato"
+          },
+          "price": 3.6,
+          "unit": "und"
+        }
+      ],
+      "paraLlevar": true
+    },
+    {
+      "id": "lattes",
+      "label": {
+        "es": "Lattes",
+        "eu": "Latteak",
+        "en": "Lattes",
+        "fr": "Lattes"
+      },
+      "paraLlevar": true,
+      "items": [
+        {
+          "id": "l_chai",
+          "name": {
+            "es": "Chai latte"
+          },
+          "price": 3.9,
+          "unit": "und"
+        },
+        {
+          "id": "l_golden",
+          "name": {
+            "es": "Golden latte"
+          },
+          "price": 4.0,
+          "unit": "und"
+        },
+        {
+          "id": "l_matcha",
+          "name": {
+            "es": "Matcha latte"
+          },
+          "price": 4.1,
+          "unit": "und"
+        },
+        {
+          "id": "l_dirty_chai",
+          "name": {
+            "es": "Dirty chai latte"
+          },
+          "price": 4.3,
+          "unit": "und"
+        },
+        {
+          "id": "l_menta",
+          "name": {
+            "es": "Latte de menta",
+            "en": "Mint latte",
+            "fr": "Latte à la menthe",
+            "eu": "Menda lattea"
+          },
+          "price": 4.3,
+          "unit": "und"
+        },
+        {
+          "id": "l_avellana",
+          "name": {
+            "es": "Latte de avellana",
+            "en": "Hazelnut latte",
+            "fr": "Latte noisette",
+            "eu": "Hurrezko lattea"
+          },
+          "price": 4.4,
+          "unit": "und"
+        },
+        {
+          "id": "l_vainilla",
+          "name": {
+            "es": "Latte de vainilla",
+            "en": "Vanilla latte",
+            "fr": "Latte vanille",
+            "eu": "Banilla lattea"
+          },
+          "price": 4.4,
+          "unit": "und"
+        },
+        {
+          "id": "l_caramel",
+          "name": {
+            "es": "Latte de caramelo",
+            "en": "Caramel latte",
+            "fr": "Latte caramel",
+            "eu": "Karamelu lattea"
+          },
+          "price": 4.4,
+          "unit": "und"
+        },
+        {
+          "id": "l_pumpkin",
+          "name": {
+            "es": "Pumpkin latte"
+          },
+          "price": 4.4,
+          "unit": "und"
+        },
+        {
+          "id": "l_matcha_zumo",
+          "name": {
+            "es": "Matcha con zumo",
+            "en": "Matcha with juice",
+            "fr": "Matcha au jus",
+            "eu": "Matcha zukuarekin"
+          },
+          "price": 5.0,
+          "unit": "und"
+        }
+      ]
+    },
+    {
+      "id": "bebidas",
+      "label": {
+        "es": "Smoothies y otras bebidas",
+        "eu": "Smoothieak eta beste edariak",
+        "en": "Smoothies & other drinks",
+        "fr": "Smoothies & autres boissons"
+      },
+      "items": [
+        {
+          "id": "chocolate_taza",
+          "name": {
+            "es": "Chocolate a la taza",
+            "en": "Hot chocolate",
+            "fr": "Chocolat chaud"
+          },
+          "price": null,
+          "unit": "und"
+        },
+        {
+          "id": "colacao",
+          "name": {
+            "es": "ColaCao"
+          },
+          "price": null,
+          "unit": "und"
+        },
+        {
+          "id": "sm_tropical",
+          "name": {
+            "es": "Smoothie Tropical"
+          },
+          "desc": {
+            "es": "Mango y zumo de naranja",
+            "en": "Mango and orange juice",
+            "fr": "Mangue et jus d'orange",
+            "eu": "Mangoa eta laranja zukua"
+          },
+          "price": 5.9,
+          "unit": "und"
+        },
+        {
+          "id": "sm_tokio",
+          "name": {
+            "es": "Smoothie Tokio"
+          },
+          "desc": {
+            "es": "Fresa, menta y zumo de naranja",
+            "en": "Strawberry, mint and orange juice",
+            "fr": "Fraise, menthe et jus d'orange",
+            "eu": "Marrubia, menda eta laranja zukua"
+          },
+          "price": 5.9,
+          "unit": "und"
+        },
+        {
+          "id": "sm_hawai",
+          "name": {
+            "es": "Smoothie Hawai"
+          },
+          "desc": {
+            "es": "Piña, mango y zumo de naranja",
+            "en": "Pineapple, mango and orange juice",
+            "fr": "Ananas, mangue et jus d'orange",
+            "eu": "Anana, mangoa eta laranja zukua"
+          },
+          "price": 5.9,
+          "unit": "und"
+        }
+      ]
+    },
+    {
+      "id": "donuts",
+      "label": {
+        "es": "Donuts",
+        "en": "Donuts"
+      },
+      "nota": {
+        "es": "Todos nuestros donuts llevan dátil. Consulta el precio del día en tienda.",
+        "eu": "Gure donut guztiek datila dute. Galdetu eguneko prezioa dendan.",
+        "en": "All our donuts are made with dates. Ask for today's price in store.",
+        "fr": "Tous nos donuts sont aux dattes. Demandez le prix du jour en boutique."
+      },
+      "items": [
+        {
+          "id": "donut_platano",
+          "name": {
+            "es": "Donut de plátano y dátil",
+            "en": "Banana & date donut",
+            "fr": "Donut banane & datte",
+            "eu": "Banana eta datil donuta"
+          },
+          "price": null,
+          "unit": "und",
+          "tags": [
+            "sin_azucar_anadida"
+          ]
+        },
+        {
+          "id": "donut_calabaza",
+          "name": {
+            "es": "Donut de calabaza y dátil",
+            "en": "Pumpkin & date donut",
+            "fr": "Donut potiron & datte",
+            "eu": "Kalabaza eta datil donuta"
+          },
+          "price": null,
+          "unit": "und",
+          "tags": [
+            "sin_azucar_anadida"
+          ]
+        },
+        {
+          "id": "donut_boniato",
+          "name": {
+            "es": "Donut de boniato y dátil",
+            "en": "Sweet potato & date donut",
+            "fr": "Donut patate douce & datte",
+            "eu": "Boniato eta datil donuta"
+          },
+          "price": null,
+          "unit": "und",
+          "tags": [
+            "sin_azucar_anadida"
+          ]
+        },
+        {
+          "id": "donut_manzana",
+          "name": {
+            "es": "Donut de manzana y dátil",
+            "en": "Apple & date donut",
+            "fr": "Donut pomme & datte",
+            "eu": "Sagar eta datil donuta"
+          },
+          "price": null,
+          "unit": "und",
+          "tags": [
+            "sin_azucar_anadida"
+          ]
+        },
+        {
+          "id": "donut_avena",
+          "name": {
+            "es": "Especial de avena",
+            "en": "Oat special",
+            "fr": "Spécial avoine",
+            "eu": "Olo berezia"
+          },
+          "price": null,
+          "unit": "und",
+          "tags": [
+            "sin_azucar_anadida"
+          ]
+        },
+        {
+          "id": "donut_arroz",
+          "name": {
+            "es": "Especial de arroz",
+            "en": "Rice special",
+            "fr": "Spécial riz",
+            "eu": "Arroz berezia"
+          },
+          "price": null,
+          "unit": "und",
+          "tags": [
+            "sin_azucar_anadida"
+          ]
+        },
+        {
+          "id": "donut_algarrobo",
+          "name": {
+            "es": "Especial de algarrobo, almendra y cacao",
+            "en": "Carob, almond & cocoa special",
+            "fr": "Spécial caroube, amande & cacao",
+            "eu": "Algarrobo, almendra eta kakao berezia"
+          },
+          "price": null,
+          "unit": "und",
+          "tags": [
+            "sin_azucar_anadida"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dulces",
+      "label": {
+        "es": "Dulces del día",
+        "eu": "Eguneko gozoak",
+        "en": "Today's bakes",
+        "fr": "Les douceurs du jour"
+      },
+      "items": [
+        {
+          "id": "panes_queso",
+          "name": {
+            "es": "Panes de queso",
+            "en": "Cheese breads",
+            "fr": "Pains au fromage",
+            "eu": "Gazta ogiak"
+          },
+          "price": 0.9,
+          "unit": "und"
+        },
+        {
+          "id": "alfajores",
+          "name": {
+            "es": "Alfajores"
+          },
+          "price": 1.3,
+          "unit": "und"
+        },
+        {
+          "id": "tarta_manzana",
+          "name": {
+            "es": "Tarta de manzana (porción)",
+            "en": "Apple tart (slice)",
+            "fr": "Tarte aux pommes (part)",
+            "eu": "Sagar tarta (zatia)"
+          },
+          "price": 1.8,
+          "unit": "und"
+        },
+        {
+          "id": "muffins",
+          "name": {
+            "es": "Muffins"
+          },
+          "price": 1.85,
+          "unit": "und"
+        },
+        {
+          "id": "brownie",
+          "name": {
+            "es": "Brownie"
+          },
+          "price": 1.95,
+          "unit": "und"
+        },
+        {
+          "id": "croissant",
+          "name": {
+            "es": "Croissant"
+          },
+          "price": null,
+          "unit": "und"
+        }
+      ]
+    },
+    {
+      "id": "galletas",
+      "label": {
+        "es": "Cookies y pastas",
+        "eu": "Cookieak eta pastak",
+        "en": "Cookies & butter biscuits",
+        "fr": "Cookies & petits fours"
+      },
+      "items": [
+        {
+          "id": "galletas_oasis",
+          "name": {
+            "es": "Galletas Oasis",
+            "en": "Oasis cookies",
+            "fr": "Cookies Oasis",
+            "eu": "Oasis gailetak"
+          },
+          "price": 2.9,
+          "unit": "und"
+        },
+        {
+          "id": "pastas_manteq",
+          "name": {
+            "es": "Pastas de mantequilla",
+            "en": "Butter biscuits",
+            "fr": "Petits fours au beurre",
+            "eu": "Gurin pastak"
+          },
+          "price": 39.0,
+          "unit": "kg"
+        }
+      ]
+    },
+    {
+      "id": "bizcochos",
+      "label": {
+        "es": "Bizcochos por kilo",
+        "eu": "Bizkotxoak kiloka",
+        "en": "Loaf cakes by the kilo",
+        "fr": "Gâteaux au kilo"
+      },
+      "items": [
+        {
+          "id": "biz_avena",
+          "name": {
+            "es": "Bizcocho de avena",
+            "en": "Oat",
+            "fr": "Avoine",
+            "eu": "Oloa"
+          },
+          "price": 21.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_boniato",
+          "name": {
+            "es": "Bizcocho de boniato",
+            "en": "Sweet potato",
+            "fr": "Patate douce",
+            "eu": "Boniatoa"
+          },
+          "price": 21.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_calabaza",
+          "name": {
+            "es": "Bizcocho de calabaza",
+            "en": "Pumpkin",
+            "fr": "Potiron",
+            "eu": "Kalabaza"
+          },
+          "price": 21.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_coco",
+          "name": {
+            "es": "Bizcocho de coco",
+            "en": "Coconut",
+            "fr": "Noix de coco",
+            "eu": "Kokoa"
+          },
+          "price": 21.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_manzana",
+          "name": {
+            "es": "Bizcocho de manzana",
+            "en": "Apple",
+            "fr": "Pomme",
+            "eu": "Sagarra"
+          },
+          "price": 21.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_naranja",
+          "name": {
+            "es": "Bizcocho de naranja",
+            "en": "Orange",
+            "fr": "Orange",
+            "eu": "Laranja"
+          },
+          "price": 21.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_zanahoria",
+          "name": {
+            "es": "Bizcocho de zanahoria",
+            "en": "Carrot",
+            "fr": "Carotte",
+            "eu": "Azenarioa"
+          },
+          "price": 21.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_platano",
+          "name": {
+            "es": "Bizcocho de plátano",
+            "en": "Banana",
+            "fr": "Banane",
+            "eu": "Banana"
+          },
+          "price": 22.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_cafe",
+          "name": {
+            "es": "Bizcocho de café",
+            "en": "Coffee",
+            "fr": "Café",
+            "eu": "Kafea"
+          },
+          "price": 22.0,
+          "unit": "kg"
+        },
+        {
+          "id": "biz_arandanos",
+          "name": {
+            "es": "Bizcocho de arándanos",
+            "en": "Blueberry",
+            "fr": "Myrtille",
+            "eu": "Ahabia"
+          },
+          "price": 22.0,
+          "unit": "kg"
+        }
+      ]
+    },
+    {
+      "id": "tartas",
+      "label": {
+        "es": "Tartas y encargos",
+        "eu": "Tartak eta enkarguak",
+        "en": "Cakes & orders",
+        "fr": "Gâteaux & commandes"
+      },
+      "nota": {
+        "es": "Elige cuántas porciones quieres. Cada ración pesa unos 150 g. 3 porciones = media tarta · 6 porciones = tarta completa.",
+        "eu": "Aukeratu zenbat zati nahi dituzun. Zati bakoitzak 150 g inguru. 3 zati = tarta erdia · 6 zati = tarta osoa.",
+        "en": "Choose how many slices you want. Each slice weighs about 150 g. 3 slices = half a cake · 6 slices = whole cake.",
+        "fr": "Choisissez le nombre de parts. Chaque part pèse environ 150 g. 3 parts = un demi-gâteau · 6 parts = gâteau entier."
+      },
+      "items": [
+        {
+          "id": "t_banoffee",
+          "type": "tarta",
+          "name": {
+            "es": "Tarta Banoffee"
+          },
+          "pricePerKg": 23.0,
+          "photo": null
+        },
+        {
+          "id": "t_red_velvet",
+          "type": "tarta",
+          "name": {
+            "es": "Tarta Red Velvet"
+          },
+          "pricePerKg": 23.0,
+          "photo": null
+        },
+        {
+          "id": "t_zanahoria",
+          "type": "tarta",
+          "name": {
+            "es": "Tarta de zanahoria",
+            "en": "Carrot cake",
+            "fr": "Carrot cake",
+            "eu": "Azenario tarta"
+          },
+          "pricePerKg": 23.0,
+          "photo": null
+        },
+        {
+          "id": "t_oreo",
+          "type": "tarta",
+          "name": {
+            "es": "Tarta de Oreo"
+          },
+          "pricePerKg": 24.0,
+          "photo": null
+        },
+        {
+          "id": "t_queso",
+          "type": "tarta",
+          "name": {
+            "es": "Tarta de queso al horno",
+            "en": "Baked cheesecake",
+            "fr": "Cheesecake au four",
+            "eu": "Labeko gazta tarta"
+          },
+          "pricePerKg": 24.0,
+          "photo": null
+        },
+        {
+          "id": "t_tres_leches",
+          "type": "tarta",
+          "name": {
+            "es": "Tres Leches completo",
+            "en": "Tres Leches (full tray)",
+            "fr": "Tres Leches (entier)",
+            "eu": "Tres Leches osoa"
+          },
+          "desc": {
+            "es": "Merengue tostado y fresa fresca.",
+            "en": "Toasted meringue and fresh strawberry.",
+            "fr": "Meringue toastée et fraise fraîche.",
+            "eu": "Merenge txigortua eta marrubi freskoa."
+          },
+          "pricePerKg": null,
+          "photo": "tres-leches-completo"
+        },
+        {
+          "id": "t_tres_leches_peq",
+          "type": "simple",
+          "name": {
+            "es": "Tres Leches pequeño",
+            "en": "Tres Leches (individual)",
+            "fr": "Tres Leches (individuel)",
+            "eu": "Tres Leches txikia"
+          },
+          "desc": {
+            "es": "Tarrina individual, merengue tostado y fresa.",
+            "en": "Individual tub, toasted meringue and strawberry.",
+            "fr": "Pot individuel, meringue toastée et fraise.",
+            "eu": "Banakako ontzia, merenge txigortua eta marrubia."
+          },
+          "price": null,
+          "unit": "und",
+          "photo": "tres-leches-pequeno"
+        },
+        {
+          "id": "biz_vegano",
+          "type": "simple",
+          "name": {
+            "es": "Bizcocho vegano",
+            "en": "Vegan loaf cake",
+            "fr": "Gâteau vegan",
+            "eu": "Bizkotxo begana"
+          },
+          "desc": {
+            "es": "Horneado sin ingredientes de origen animal.",
+            "en": "Baked with no animal ingredients.",
+            "fr": "Cuit sans ingrédients d'origine animale.",
+            "eu": "Animalia jatorriko osagairik gabe egina."
+          },
+          "price": 21.0,
+          "unit": "kg",
+          "tags": [
+            "vegano"
+          ],
+          "photo": "bizcocho-vegano"
+        },
+        {
+          "id": "plancha_cole",
+          "type": "simple",
+          "name": {
+            "es": "Plancha de bizcocho (colegios)",
+            "en": "Sheet cake (schools)",
+            "fr": "Génoise plaque (écoles)",
+            "eu": "Bizkotxo plantxa (ikastetxeak)"
+          },
+          "desc": {
+            "es": "Formato grande para cumpleaños y celebraciones de cole.",
+            "en": "Large format for birthdays and school parties.",
+            "fr": "Grand format pour anniversaires et fêtes d'école.",
+            "eu": "Formatu handia urtebetetze eta ikastetxeko ospakizunetarako."
+          },
+          "price": 28.0,
+          "unit": "und",
+          "photo": "plancha-cole"
+        }
+      ]
+    }
+  ]
+}

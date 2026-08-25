@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Oasis Kafe · Café de especialidad y repostería en el Antiguo, Donostia</title>
+  <meta name="description" content="Café de especialidad, matcha, chai y repostería artesanal en Jose Goikoa 1, Antiguo, Donostia. Bizcochos y tartas por porciones, donuts con dátil y dulces del día.">
+  <meta name="theme-color" content="#FBF7ED">
+  <meta name="color-scheme" content="light">
+  <link rel="canonical" href="{{SITE_URL}}">
+
+  <meta property="og:type" content="restaurant.restaurant">
+  <meta property="og:site_name" content="Oasis Kafe">
+  <meta property="og:locale" content="es_ES">
+  <meta property="og:title" content="Oasis Kafe · Un oasis escondido en el Antiguo">
+  <meta property="og:description" content="Café de especialidad, matcha, chai y repostería artesanal en Jose Goikoa 1, Donostia.">
+  <meta property="og:url" content="{{SITE_URL}}">
+  <meta property="og:image" content="{{OG_IMAGE}}">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <link rel="icon" href="{{FAVICON}}">
+  <link rel="apple-touch-icon" href="{{FAVICON}}">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>{{STYLES}}</style>
+</head>
+<body>
+  <a class="skip-link" href="#contenido" data-i18n="skip">Saltar al contenido</a>
+
+  <div id="toastMsg" class="toast" role="status" aria-live="polite"></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#top" class="brand-link">
+        <span class="brand-logo"><img src="{{LOGO_SVG}}" alt="" width="32" height="32"></span>
+        <b class="brand-name">Oasis Kafe</b>
+      </a>
+
+      <div class="header-right-group">
+        <div class="lang-selector" role="group" data-i18n-aria-label="langLabel" aria-label="Idioma">
+          <button type="button" class="lang-btn is-active" data-lang="es" aria-pressed="true" lang="es">ES</button>
+          <button type="button" class="lang-btn" data-lang="eu" aria-pressed="false" lang="eu">EU</button>
+          <button type="button" class="lang-btn" data-lang="en" aria-pressed="false" lang="en">EN</button>
+          <button type="button" class="lang-btn" data-lang="fr" aria-pressed="false" lang="fr">FR</button>
+        </div>
+
+        <a href="tel:{{PHONE_E164}}" class="header-tel" data-i18n-aria-label="phone" aria-label="Teléfono">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+          <span class="header-tel-text">{{PHONE_DISPLAY}}</span>
+        </a>
+
+        <button type="button" id="headerCartBtn" class="header-cart-btn" aria-controls="cartDrawer" aria-expanded="false">
+          <svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="header-cart-text" data-i18n="cartTitle">Tu pedido</span>
+          <span id="headerCartBadge" class="header-cart-badge" hidden>0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero-section">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <span class="eyebrow" data-i18n="eyebrow">Antiguo · Jose Goikoa 1</span>
+          <h1 class="hero-title"><span data-i18n="h1a">Un oasis</span> <em data-i18n="h1b">escondido</em></h1>
+          <p class="hero-lede" data-i18n="lede">Café de toda la vida, matcha y repostería hecha aquí mismo.</p>
+
+          <div class="hero-actions">
+            <a href="#carta" class="btn btn-primary" data-i18n="ctaMenu">Ver la carta</a>
+            <a href="{{MAPS_DIR_URL}}" target="_blank" rel="noopener" class="btn btn-outline" data-i18n="ctaMap">Cómo llegar</a>
+          </div>
+
+          <p class="hero-meta">
+            <span class="status-chip" id="liveStatus">
+              <span id="liveDot" class="live-dot is-unknown" aria-hidden="true"></span>
+              <span id="liveTxt" data-i18n="statusChecking">Comprobando horario…</span>
+            </span>
+            <span class="hero-meta-sep" aria-hidden="true">·</span>
+            <span data-i18n="reviews">4,9 ★ · 36 reseñas</span>
+          </p>
+        </div>
+
+        <div class="donut-showcase">
+          <h2 class="sr-only" data-i18n="donutHeading">Nuestros donuts con dátil</h2>
+          <div class="donut-svg-wrap">
+            <svg viewBox="0 0 320 330" aria-hidden="true" focusable="false">
+              <defs>
+                <clipPath id="dRing"><path clip-rule="evenodd" d="M42 190 C42 138 90 92 158 90 C224 88 278 132 278 186 C278 240 226 288 158 286 C92 284 42 242 42 190 Z M120 188 C120 172 138 162 160 162 C182 162 200 172 200 188 C200 204 182 214 160 214 C138 214 120 204 120 188 Z"></path></clipPath>
+              </defs>
+              <ellipse cx="162" cy="311" rx="99" ry="13" fill="none" stroke="#0C1014" stroke-width="1.3" opacity=".35"></ellipse>
+              <g transform="translate(0,16)"><path id="donutSide" d="M42 190 C42 138 90 92 158 90 C224 88 278 132 278 186 C278 240 226 288 158 286 C92 284 42 242 42 190 Z" fill="#A76F3B" stroke="#0C1014" stroke-width="1.6"></path></g>
+              <path id="donutTop" d="M42 190 C42 138 90 92 158 90 C224 88 278 132 278 186 C278 240 226 288 158 286 C92 284 42 242 42 190 Z" fill="#E6BC80" stroke="#0C1014" stroke-width="1.7"></path>
+              <g clip-path="url(#dRing)"><rect id="donutCrust" x="34" y="82" width="252" height="212" fill="#C2894F"></rect></g>
+              <path d="M120 188 C120 172 138 162 160 162 C182 162 200 172 200 188 C200 204 182 214 160 214 C138 214 120 204 120 188 Z" fill="#FBF7ED" stroke="#0C1014" stroke-width="1.7"></path>
+            </svg>
+          </div>
+          <div id="donutFlavors" class="donut-flavors" role="group" aria-label="Sabores"></div>
+          <p class="donut-info-card">
+            <span id="donutTitle" class="donut-info-title"></span>
+            <span id="donutDesc" class="donut-info-desc"></span>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" aria-label="Nuestros principios">
+      <ul class="pillars-grid">
+        <li class="pillar-item"><h2 data-i18n="hc1h">Hecho en casa</h2><p data-i18n="hc1p"></p></li>
+        <li class="pillar-item"><h2 data-i18n="hc2h">Fresco y natural</h2><p data-i18n="hc2p"></p></li>
+        <li class="pillar-item"><h2 data-i18n="hc3h">Del mismo día</h2><p data-i18n="hc3p"></p></li>
+        <li class="pillar-item"><h2 data-i18n="hc4h">Dulce de fruta</h2><p data-i18n="hc4p"></p></li>
+      </ul>
+    </section>
+
+    <section id="carta" class="menu-section">
+      <div class="container" id="contenido" tabindex="-1">
+        <header class="section-header">
+          <span class="eyebrow" data-i18n="menuEyebrow">La carta</span>
+          <h2 class="section-title"><span data-i18n="menuHa">Pensado para ti,</span> <em data-i18n="menuHb">cada mañana</em></h2>
+          <p class="section-desc" data-i18n="menuP"></p>
+        </header>
+
+        <div class="menu-toolbar">
+          <div class="menu-search-wrap">
+            <svg class="menu-search-icon" viewBox="0 0 24 24" width="16" height="16" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.2-3.2"/></svg>
+            <input type="search" id="menuSearchInput" class="menu-search-input" autocomplete="off"
+                   data-i18n-placeholder="searchPlaceholder" data-i18n-aria-label="searchLabel"
+                   placeholder="Buscar café, dulce o ingrediente…" aria-label="Buscar en la carta">
+          </div>
+          <div id="dietaryFiltersScroll" class="dietary-filters-scroll" role="group" data-i18n-aria-label="filtersLabel" aria-label="Filtros"></div>
+        </div>
+
+        <div id="tabsScroll" class="tabs-scroll" role="tablist" aria-label="Secciones de la carta"></div>
+
+        <section id="tabGallery" class="shop-gallery" aria-labelledby="galleryHeading" hidden>
+          <h3 id="galleryHeading" class="sr-only" data-i18n="galleryHeading">Así es la casa</h3>
+          <ul id="galleryList" class="gallery-list"></ul>
+        </section>
+
+        <p id="categoryNote" class="category-note" hidden></p>
+
+        <div id="menuGrid" class="menu-grid" role="tabpanel" tabindex="0"></div>
+        <div id="tartasSection" hidden><div id="tartasGrid" class="tartas-grid"></div></div>
+
+        <p id="menuEmpty" class="menu-empty" hidden>
+          <span data-i18n="noResults">No encontramos nada con esa búsqueda.</span>
+          <button type="button" id="clearSearchBtn" class="btn btn-outline btn-sm" data-i18n="clearSearch">Limpiar búsqueda</button>
+        </p>
+      </div>
+    </section>
+
+    <section class="quote-section">
+      <div class="container">
+        <img src="{{QUOTE_SVG}}" alt="" width="30" height="23" class="quote-mark">
+        <blockquote class="font-serif quote-text" data-i18n="quote"></blockquote>
+      </div>
+    </section>
+
+    <section class="info-section">
+      <div class="container info-grid">
+        <div>
+          <span class="eyebrow" data-i18n="hEyebrow">Horario</span>
+          <h2 class="section-title" data-i18n="hH">Abrimos a las ocho</h2>
+          <table class="hours-table">
+            <caption class="sr-only" data-i18n="hEyebrow">Horario</caption>
+            <tbody id="hoursTableBody"></tbody>
+          </table>
+        </div>
+
+        <div class="contact-card">
+          <h2 class="contact-title" data-i18n="wH">Dónde estamos</h2>
+
+{{MAP_BLOCK}}
+
+          <address class="contact-list">
+            <a class="contact-item" href="{{MAPS_DIR_URL}}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+              <span><strong>Jose Goikoa Kalea, 1</strong><br>20018 Donostia / San Sebastián</span>
+            </a>
+            <a class="contact-item" href="tel:{{PHONE_E164}}">
+              <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+              <span>{{PHONE_DISPLAY}}</span>
+            </a>
+            <a class="contact-item" href="{{WA_URL}}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a13 13 0 0 1-6.9-6c-.5-.8-.9-1.8-.9-2.7 0-1 .5-1.5.7-1.7.2-.2.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4 0 .5l-.4.5-.3.3c-.1.1-.2.3 0 .5a9 9 0 0 0 4 3.4c.3.1.4.1.6-.1l.8-1c.2-.2.3-.2.5-.1l2 .9c.2.1.4.2.4.3v.9Z"/></svg>
+              <span>WhatsApp {{WA_DISPLAY}}</span>
+            </a>
+            <a class="contact-item" href="{{IG_URL}}" target="_blank" rel="noopener">
+              <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+              <span>@oasiskafe_bentaberri</span>
+            </a>
+          </address>
+
+          <a href="{{MAPS_DIR_URL}}" target="_blank" rel="noopener" class="btn btn-primary btn-block" data-i18n="ctaMap">Cómo llegar</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <b>Oasis Kafe</b>
+      <span>Jose Goikoa 1 · 20018 Donostia</span>
+      <a href="tel:{{PHONE_E164}}">{{PHONE_DISPLAY}}</a>
+      <small>© <span id="footerYear">{{YEAR}}</span> · <span data-i18n="footerRights">Todos los derechos reservados.</span></small>
+    </div>
+  </footer>
+
+  <div id="cartBackdrop" class="cart-drawer-backdrop" hidden></div>
+  <aside id="cartDrawer" class="cart-drawer" role="dialog" aria-modal="true" aria-labelledby="cartHeading" hidden>
+    <div class="cart-header">
+      <h2 id="cartHeading" class="cart-heading" data-i18n="cartTitle">Tu pedido</h2>
+      <button type="button" id="closeCartBtn" class="icon-btn" data-i18n-aria-label="galleryClose" aria-label="Cerrar">
+        <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+    <div id="cartItemsList" class="cart-body"></div>
+    <div class="cart-footer">
+      <p class="cart-note" data-i18n="cartNote"></p>
+      <div class="cart-total-row">
+        <span data-i18n="cartTotal">Total estimado</span>
+        <strong id="cartTotalAmount" class="cart-total-amount">0,00 €</strong>
+      </div>
+      <a id="cartWaBtn" href="{{WA_URL}}" target="_blank" rel="noopener" class="btn btn-primary btn-block" data-i18n="cartWa">Enviar por WhatsApp</a>
+      <button type="button" id="cartClearBtn" class="btn btn-ghost btn-block btn-sm" data-i18n="cartClear">Vaciar</button>
+    </div>
+  </aside>
+
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxCaption" hidden>
+    <button type="button" id="lightboxClose" class="lightbox-close" data-i18n-aria-label="galleryClose" aria-label="Cerrar">
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+    <figure class="lightbox-figure">
+      <img id="lightboxImg" src="" alt="">
+      <figcaption id="lightboxCaption" class="lightbox-caption"></figcaption>
+    </figure>
+  </div>
+
+  <script type="application/json" id="dataMenu">{{MENU_JSON}}</script>
+  <script type="application/json" id="dataI18n">{{I18N_JSON}}</script>
+  <script type="application/json" id="dataPhotos">{{PHOTOS_JSON}}</script>
+  <script type="application/json" id="dataHours">{{HOURS_JSON}}</script>
+  <script type="application/json" id="dataSite">{{SITE_JSON}}</script>
+  <script type="application/ld+json">{{JSONLD}}</script>
+  <script>{{APP_JS}}</script>
+</body>
+</html>
