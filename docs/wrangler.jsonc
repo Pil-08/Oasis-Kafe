@@ -1,0 +1,12 @@
+{
+  "name": "oasis-kafe",
+  "compatibility_date": "2026-08-28",
+  "assets": {
+    "directory": "docs"
+  },
+  "workers_dev": true,
+  "preview_urls": false,
+  "observability": {
+    "enabled": true
+  }
+}
