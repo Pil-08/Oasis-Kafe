@@ -1,0 +1,14 @@
+# Los HTML se guardan EXACTAMENTE como estan, sin conversion de fin de linea.
+# Esto garantiza que lo que se publica en la web es byte a byte lo que editas,
+# sin depender de la configuracion core.autocrlf de cada ordenador.
+*.html -text
+
+# Ficheros de configuracion de Cloudflare: siempre LF.
+_headers    text eol=lf
+*.jsonc     text eol=lf
+*.json      text eol=lf
+
+# Imagenes y binarios.
+*.webp      binary
+*.png       binary
+*.jpg       binary

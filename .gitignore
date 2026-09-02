@@ -4,3 +4,7 @@ __pycache__/
 .DS_Store
 Thumbs.db
 node_modules/
+
+# Copias de seguridad personales: se quedan en tu ordenador, no suben a GitHub.
+*COPIA*
+*_backup.html

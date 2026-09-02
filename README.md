@@ -9,21 +9,44 @@ python3 build.py          →  dist/oasis-kafe.html   (y una copia en docs/index
 Un solo fichero HTML con el CSS, el JS, los datos y las imágenes dentro. Se abre con doble clic,
 se manda por WhatsApp o se sube a cualquier hosting. Sin dependencias, sin build de node.
 
-## Publicarla (GitHub Pages)
+## Publicar la web (automatizado)
 
-`docs/index.html` es lo que sirve GitHub Pages. **Ahora mismo es la versión editada a mano**
-(`oasis_kafe_donostia.html`), no la que genera `build.py` — desde que existe esa versión manual,
-`build.py` deja de tocar `docs/index.html` a propósito, para no pisarla. Para activar Pages
-(una sola vez):
+La web está en **Cloudflare Pages**: <https://oasis-kafe.pages.dev>
 
-1. En GitHub: **Settings → Pages**
-2. **Source:** Deploy from a branch
-3. **Branch:** `main` · carpeta **`/docs`** → Save
+El archivo que editas es **`oasis_kafe.html`** (en la raíz). El que sirve Cloudflare es
+**`docs/index.html`** (así lo fija `docs/wrangler.jsonc` con `assets.directory: "docs"`).
+El script se encarga de esa copia por ti.
 
-A los pocos minutos la web queda publicada en `https://pil-08.github.io/Oasis-Cafe-de-Pil_08/`.
+### Cómo publicar un cambio
 
-Para volver a publicar la versión generada por `build.py` en vez de la manual:
-`cp dist/oasis-kafe.html docs/index.html`.
+1. Edita `oasis_kafe.html` y guarda.
+2. Doble clic en **`PUBLICAR-WEB.bat`**
+
+O desde la terminal, con un mensaje propio:
+
+```powershell
+.\desplegar.ps1 -Mensaje "Nuevos precios de tartas"
+```
+
+El script hace todo esto solo:
+
+| Paso | Qué hace |
+|---|---|
+| 1 | Se sincroniza con GitHub (`fetch` + `pull` si hace falta) |
+| 2 | Copia `oasis_kafe.html` → `docs/index.html` y → `oasis_kafe_donostia.html` |
+| 3 | `commit` + `push` a `main` |
+| 4 | Espera a Cloudflare y **verifica por MD5** que la web sirve tu archivo exacto |
+
+Si no hay cambios, avisa y no hace nada. Si la web no se actualiza en 3 minutos, te lo dice.
+
+### Dos cosas que no hay que tocar
+
+- **`.gitattributes`** fija `*.html -text`. Sin eso, Git convertiría los finales de línea
+  (CRLF → LF) y lo publicado dejaría de ser byte a byte lo que editas.
+- **`docs/_headers`** lleva una CSP estricta. Si añades algo externo nuevo (un iframe, un
+  script, una fuente), **hay que permitirlo ahí** o el navegador lo bloquea en silencio.
+  Ejemplo real: al pasar el mapa de OpenStreetMap a Google Maps hubo que cambiar
+  `frame-src` a `https://maps.google.com https://www.google.com`.
 
 ## Qué hay dentro
 
