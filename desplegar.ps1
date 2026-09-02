@@ -37,11 +37,11 @@ function Aviso ($t) { Write-Host "   !   $t" -ForegroundColor Yellow }
 function Fallo ($t) { Write-Host "`n   X   $t`n" -ForegroundColor Red; exit 1 }
 
 # Ejecuta git y aborta si falla.
-function Git-O ([string[]] $Args) {
-    $salida = & git @Args 2>&1
+function Invoke-Git ([string[]] $GitArgs) {
+    $salida = & git @GitArgs 2>&1
     if ($LASTEXITCODE -ne 0) {
         Write-Host ($salida | Out-String) -ForegroundColor DarkGray
-        Fallo "Fallo el comando: git $($Args -join ' ')"
+        Fallo "Fallo el comando: git $($GitArgs -join ' ')"
     }
     return $salida
 }
@@ -52,9 +52,18 @@ if (-not (Test-Path -LiteralPath $FUENTE)) {
     Fallo "No encuentro oasis_kafe.html en esta carpeta."
 }
 
+# Git tiene que saber quien eres, o el commit falla a mitad del proceso.
+$gitUser  = (& git config user.name)
+$gitEmail = (& git config user.email)
+if (-not $gitUser -or -not $gitEmail) {
+    Fallo ("Git no sabe quien eres. Configuralo una sola vez con:`n" +
+           "         git config user.name  ""Tu nombre""`n" +
+           "         git config user.email ""tu@email.com""")
+}
+
 # ---- 1. Sincronizar con GitHub -------------------------------------------
 Paso 'Sincronizando con GitHub'
-Git-O @('fetch','origin','--quiet') | Out-Null
+Invoke-Git @('fetch','origin','--quiet') | Out-Null
 
 $detras = [int](& git rev-list --count HEAD..origin/main)
 $delante = [int](& git rev-list --count origin/main..HEAD)
@@ -64,7 +73,7 @@ if ($detras -gt 0 -and $delante -gt 0) {
 }
 if ($detras -gt 0) {
     Aviso "GitHub tiene $detras cambio(s) mas nuevo(s). Descargandolos..."
-    Git-O @('pull','--ff-only','origin','main') | Out-Null
+    Invoke-Git @('pull','--ff-only','origin','main') | Out-Null
 }
 Ok 'Al dia con GitHub'
 
@@ -92,9 +101,9 @@ if (-not $Mensaje) {
     $Mensaje = "Actualizacion de la web - $(Get-Date -Format 'dd/MM/yyyy HH:mm')"
 }
 Paso 'Publicando en GitHub'
-Git-O (@('add','--') + $rutas) | Out-Null
-Git-O @('commit','-m',$Mensaje,'--quiet') | Out-Null
-Git-O @('push','origin','main','--quiet') | Out-Null
+Invoke-Git (@('add','--') + $rutas) | Out-Null
+Invoke-Git @('commit','-m',$Mensaje,'--quiet') | Out-Null
+Invoke-Git @('push','origin','main','--quiet') | Out-Null
 $sha = (& git rev-parse --short HEAD).Trim()
 Ok "Commit $sha subido  -  `"$Mensaje`""
 
