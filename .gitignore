@@ -8,3 +8,9 @@ node_modules/
 # Copias de seguridad personales: se quedan en tu ordenador, no suben a GitHub.
 *COPIA*
 *_backup.html
+dist/
+*.bat
+*.ps1
+oasis_kafe.html
+oasis_kafe_donostia.html
+ANALISIS.md
