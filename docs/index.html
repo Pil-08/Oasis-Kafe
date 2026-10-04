@@ -361,6 +361,8 @@ h1, h2, h3, .font-serif {
   position: relative;
   padding: clamp(28px, 5vw, 68px) 0 clamp(24px, 4vw, 54px);
   width: 100%;
+  overflow-x: hidden; /* respaldo iOS < 16 */
+  overflow-x: clip; /* recorta el resplandor del hero sin romper el header sticky */
 }
 
 .hero-glow {
