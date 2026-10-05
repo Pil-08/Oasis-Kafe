@@ -23,7 +23,7 @@
   <!-- Google Fonts: Fraunces & Karla -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK,SOFT@0,9..144,300..700,0..1,0..100;1,9..144,300..700,0..1,0..100&family=Karla:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,WONK,SOFT@0,9..144,300..700,0..1,0..100;1,9..144,300..700,0..1,0..100&family=Karla:ital,wght@0,300..700;1,300..700&family=Poppins:wght@700&display=swap" rel="stylesheet">
 
   <style>
 :root {
@@ -2004,9 +2004,223 @@ h1, h2, h3, .font-serif {
   .tabs-nav-wrap { display: none; }
   a[href]::after { content: ''; }
 }
-  </style>
+  
+/* ---------- Intro de marca: el sombrero del logo cae y saluda (se salta con un toque) ---------- */
+#intro {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: var(--brand-primary);
+  color: var(--bg-canvas);
+  touch-action: none;
+  overscroll-behavior: contain;
+  animation: i-out 0.6s ease 3.5s forwards;
+}
+
+#intro.i-skip { animation: i-out 0.35s ease forwards !important; }
+
+#intro .i-stack {
+  --w: min(64vw, 300px, 56vh);
+  width: var(--w);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#intro .i-mark { width: 100%; height: auto; display: block; overflow: visible; }
+
+#intro .i-face {
+  transform-box: view-box;
+  transform-origin: 35.5px 33.5px;
+  animation: i-face-in 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s both;
+}
+
+#intro .i-hat {
+  transform-box: view-box;
+  transform-origin: 35px 31px;
+  animation: i-hat-seq 3s 0.25s both;
+}
+
+#intro .i-star {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: i-spark 0.95s ease-out both;
+}
+#intro .i-s1 { animation-delay: 1s; }
+#intro .i-s2 { animation-delay: 1.15s; }
+#intro .i-s3 { animation-delay: 2.45s; }
+
+#intro .i-word {
+  font-family: 'Poppins', var(--font-sans);
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: calc(var(--w) * 0.21);
+  line-height: 1;
+  letter-spacing: 0.01em;
+  margin-top: calc(var(--w) * 0.12);
+  white-space: nowrap;
+  animation: i-word-in 0.9s var(--ease) 1.25s both;
+}
+
+@keyframes i-out {
+  from { opacity: 1; visibility: visible; }
+  to   { opacity: 0; visibility: hidden; }
+}
+
+@keyframes i-face-in {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes i-hat-seq {
+  0%   { opacity: 0; transform: translateY(-30px) rotate(-12deg); animation-timing-function: cubic-bezier(0.55, 0, 0.95, 0.55); }
+  4%   { opacity: 1; }
+  22%  { opacity: 1; transform: translateY(2.4px) rotate(1.5deg) scale(1.025, 0.965); animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1); }
+  29%  { transform: translateY(-1px) rotate(-0.6deg) scale(0.995, 1.01); animation-timing-function: ease-in-out; }
+  36%  { transform: translateY(0) rotate(0deg) scale(1, 1); }
+  66%  { transform: translateY(0) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  74%  { transform: translateY(-3.4px) rotate(-7deg) scale(1, 1); animation-timing-function: ease-in-out; }
+  82%  { transform: translateY(-3px) rotate(-6.3deg) scale(1, 1); animation-timing-function: ease-out; }
+  91%  { transform: translateY(0.7px) rotate(0.8deg) scale(1.01, 0.985); animation-timing-function: ease-in-out; }
+  100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1, 1); }
+}
+
+@keyframes i-spark {
+  0%   { opacity: 0; transform: scale(0) rotate(-40deg); }
+  45%  { opacity: 1; transform: scale(1) rotate(0deg); }
+  100% { opacity: 0; transform: scale(0.2) rotate(40deg); }
+}
+
+@keyframes i-word-in {
+  from { opacity: 0; letter-spacing: 0.3em; transform: translateY(12px); }
+  to   { opacity: 1; letter-spacing: 0.01em; transform: none; }
+}
+
+@keyframes i-fade { from { opacity: 0; } to { opacity: 1; } }
+
+/* Con "reducir movimiento": sin caidas ni rebotes, solo aparece y se va con un fundido suave */
+@media (prefers-reduced-motion: reduce) {
+  #intro { animation: i-out 0.5s ease 2.4s forwards !important; }
+  #intro .i-face { animation: i-fade 0.7s ease 0.1s both !important; }
+  #intro .i-hat  { animation: i-fade 0.7s ease 0.3s both !important; }
+  #intro .i-word { animation: i-fade 0.8s ease 0.8s both !important; }
+  #intro .i-star { display: none; }
+}
+
+/* ---------- Pulido para movil ---------- */
+/* Los enlaces internos (Ver la carta, Como llegar...) no quedan bajo la cabecera fija */
+html { scroll-padding-top: 44px; }
+
+/* iPhone hace zoom al tocar un campo con letra menor de 16 px */
+@media (max-width: 860px) {
+  .menu-search-input, .cart-notes-input { font-size: 16px; }
+}
+
+/* Los botones de idioma medían 23 px de alto: por debajo del minimo tactil de 24 px */
+@media (pointer: coarse) {
+  .lang-btn { min-height: 30px; }
+}
+
+/* ---------- Icono de la cabecera: el logo en vivo, con la misma animacion que la intro ---------- */
+.brand-logo .lg { width: 60%; height: 60%; display: block; overflow: visible; color: var(--bg-canvas); }
+.brand-logo .lg-face { transform-box: view-box; transform-origin: 35.5px 33.5px; }
+.brand-logo .lg-hat  { transform-box: view-box; transform-origin: 35px 31px; }
+
+/* "backwards" (no "both"): al acabar, la animacion no retiene su ultimo fotograma y el icono vuelve a su dibujo normal, igual de nitido que antes */
+html.lg-play .brand-logo .lg-face { animation: lg-face-in 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) 0.05s backwards; }
+html.lg-play .brand-logo .lg-hat  { animation: lg-hat-seq 2.4s 0.15s backwards; }
+
+@keyframes lg-face-in {
+  from { opacity: 0; transform: scale(0.8); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Mismo recorrido que la intro, con los gestos mas amplios porque el icono mide solo 19 px */
+@keyframes lg-hat-seq {
+  0%   { opacity: 0; transform: translateY(-44px) rotate(-14deg); animation-timing-function: cubic-bezier(0.55, 0, 0.95, 0.55); }
+  4%   { opacity: 1; }
+  22%  { opacity: 1; transform: translateY(3px) rotate(2deg) scale(1.03, 0.95); animation-timing-function: cubic-bezier(0.2, 0.6, 0.4, 1); }
+  29%  { transform: translateY(-1.4px) rotate(-0.8deg) scale(0.995, 1.01); animation-timing-function: ease-in-out; }
+  36%  { transform: translateY(0) rotate(0deg) scale(1, 1); }
+  66%  { transform: translateY(0) rotate(0deg) scale(1, 1); animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1); }
+  74%  { transform: translateY(-9px) rotate(-11deg) scale(1, 1); animation-timing-function: ease-in-out; }
+  82%  { transform: translateY(-8px) rotate(-10deg) scale(1, 1); animation-timing-function: ease-out; }
+  91%  { transform: translateY(1.2px) rotate(1deg) scale(1.01, 0.985); animation-timing-function: ease-in-out; }
+  100% { opacity: 1; transform: translateY(0) rotate(0deg) scale(1, 1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html.lg-play .brand-logo .lg-face, html.lg-play .brand-logo .lg-hat { animation: none !important; }
+}
+</style>
 </head>
 <body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <defs>
+      <path id="lg-logo" fill-rule="evenodd" d="M25.2 54.4C24.3 53.8 23.9 51 23.8 45.6C23.8 44.4 23.5 44.1 21.9 43.9C21.5 43.8 20.8 43.6 20.4 43.4C20 43.3 19.1 43.1 18.5 43C17.6 42.9 17.2 42.8 16.9 42.6C16.6 42.4 16.1 42.2 15.7 42.1C14.7 42 14.3 41.9 13.9 41.6C13.6 41.4 13.1 41.2 12.7 41.1C12.3 41 11.7 40.8 11.5 40.7C11.3 40.5 10.8 40.3 10.4 40.2C10 40.1 9.6 39.8 9.4 39.7C9.2 39.5 8.9 39.3 8.7 39.2C7.7 38.7 6.5 37.8 5.4 36.8C4.8 36.2 4.3 35.8 4.2 35.8C4.2 35.8 4 35.5 3.9 35.2C3.7 34.8 3.5 34.4 3.3 34.3C2.8 33.7 2.8 31 3.4 30.4C3.6 30.2 3.8 29.8 4 29.6C4.4 28.8 6.4 26.8 7.9 25.7C8.3 25.3 9 24.8 9.3 24.5C10.2 23.7 10.9 23.2 11.3 23C11.5 22.9 11.9 22.7 12.1 22.5C12.3 22.3 12.8 22 13 21.9C13.3 21.8 13.7 21.5 13.9 21.4C14 21.2 14.5 21 14.8 20.8C15.1 20.6 15.4 20.4 15.4 20.4C15.4 20.3 15.7 20.1 16.1 19.9C16.5 19.7 17 19.5 17.2 19.3C17.4 19.1 17.8 18.9 18.1 18.9C19 18.6 19.8 17.4 19.7 16.2C19.5 14.2 19.8 11.9 20.5 10.7C20.7 10.4 20.9 9.9 20.9 9.7C21 9.6 21.1 9.3 21.3 9.1C21.4 8.9 21.7 8.6 21.9 8.2C22.3 7.6 24.5 5.5 25.1 5.1C25.4 5 25.8 4.7 26.1 4.5C26.4 4.2 26.8 4 27.1 3.9C27.3 3.9 28 3.6 28.6 3.4C30 2.7 41.6 2.7 42.8 3.3C43.3 3.6 43.8 3.8 44.1 3.8C44.3 3.9 44.7 4.1 45 4.3C45.2 4.5 45.7 4.8 45.9 4.9C46.2 5 46.6 5.3 46.8 5.5C47 5.7 47.6 6.2 48 6.6C48.4 7 48.9 7.5 49 7.7C49.2 8 49.4 8.4 49.6 8.6C49.8 8.8 50.1 9.2 50.2 9.5C50.3 9.8 50.6 10.2 50.7 10.5C50.9 10.7 51.1 11.2 51.2 12C51.3 12.6 51.5 13.3 51.6 13.6C51.8 14 51.9 14.3 51.9 15.6C51.8 17.8 52.1 18.5 53.1 18.9C53.5 19.1 54 19.4 54.3 19.5C54.6 19.7 54.8 19.9 54.9 19.9C55 19.9 55.5 20.1 55.9 20.4C56.4 20.7 56.9 21 56.9 21C57 21 57.4 21.2 57.7 21.5C58.1 21.7 58.5 22 58.7 22.2C59.2 22.5 59.9 22.9 60.4 23.4C61 23.8 61.4 24.1 62.5 24.8C62.8 25.1 63.2 25.4 63.3 25.5C63.3 25.6 63.6 25.9 63.9 26C64.8 26.5 67.1 29.1 68 30.7C68.5 31.7 68.3 34.2 67.5 35.2C66.7 36.2 64.7 38.1 64.4 38.1C64.3 38.1 64.1 38.3 63.8 38.5C63.6 38.7 63.1 39 62.8 39.1C62.5 39.3 62 39.5 61.8 39.7C61.6 39.8 61.2 40 60.9 40.1C60.7 40.2 60.2 40.4 60 40.6C59.7 40.8 59.2 41 58.8 41.1C58.5 41.2 57.9 41.4 57.6 41.5C57.3 41.7 56.5 42 55.9 42.1C55.2 42.3 54.5 42.5 54.2 42.6C53.6 42.9 52.1 43.2 51.2 43.2C50.8 43.2 50.6 43.3 50.2 43.6C49.9 43.8 49.7 43.9 49.2 43.9C48.2 43.8 47.3 44.5 47.6 45.1C47.7 45.4 47.7 45.6 47.6 46.1C47.4 46.8 47.3 47.8 47.1 51C47 53.9 47 54 46 54.3C43.6 55 43.4 54.3 44 47.2C44.2 44.9 43.9 44.4 42.5 44.8C41.2 45.2 30.9 45.2 28.2 44.8C27 44.7 26.6 47.8 27.5 50.6C27.9 51.8 28 53.5 27.6 53.9C27.1 54.5 25.8 54.8 25.2 54.4ZM45.8 53.1C45.9 53 46 52.7 46 52.4C46.1 49.2 46.4 45.7 46.7 45.1C46.8 44.9 46.9 44.6 46.8 44.1C46.7 43.2 46.9 43 48 43C48.5 43 49 42.9 49.6 42.6C50.1 42.4 50.8 42.2 51.5 42.1C53 42 53.2 41.9 53.8 41.6C54.1 41.4 54.7 41.2 55.3 41.1C55.8 41 56.5 40.8 56.8 40.6C57.2 40.4 57.8 40.2 58.2 40.1C58.7 40 59.3 39.7 59.5 39.6C59.7 39.4 60.2 39.2 60.6 39.1C60.9 39 61.3 38.8 61.4 38.6C61.6 38.5 62 38.2 62.4 38C62.8 37.8 63.3 37.5 63.5 37.3C63.7 37.1 63.9 37 64 37C64 37 64.4 36.8 64.7 36.5C65 36.2 65.4 36 65.5 35.9C65.6 35.9 65.9 35.6 66.1 35.2C66.4 34.9 66.7 34.3 66.9 34C67.3 33.4 67.3 33.2 67.1 31.9C67 31.2 66.9 30.9 66.6 30.6C66.4 30.4 66.2 30 66 29.8C65.7 29.2 62.9 26.4 62.4 26.1C62.1 25.9 61.7 25.6 61.4 25.4C61.1 25.1 60.6 24.7 60.2 24.5C59.9 24.3 59.3 23.9 59 23.6C58.7 23.3 58.3 23.1 58.3 23.1C58.2 23.1 57.7 22.9 57.2 22.5C55.9 21.7 54.8 21 54.6 21C54.6 21 54.2 20.8 53.9 20.5C53.6 20.3 53.1 20 52.8 19.9C51.1 19.4 50.7 18.4 50.7 15.4C50.8 14.3 50.7 13.9 50.6 13.6C50.4 13.4 50.2 12.7 50.1 12C49.9 11.1 49.8 10.7 49.5 10.5C49.4 10.3 49.1 9.9 48.9 9.5C48.6 8.8 46.6 6.7 45.6 6.1C45.2 5.8 44.9 5.6 44.8 5.5C44.7 5.4 44.3 5.2 44 5.1C43.6 4.9 42.9 4.6 42.5 4.4C41.3 3.7 30.6 3.7 29.3 4.3C28.9 4.6 28.5 4.7 28.4 4.7C27.5 4.7 24.8 6.5 23.7 7.9C23.3 8.3 22.9 8.9 22.6 9.2C22.4 9.5 22.1 9.9 22 10.2C21.8 10.6 21.6 11 21.4 11.3C21 11.8 20.9 12.5 20.8 15C20.5 18.5 20.2 19.3 18.5 19.9C18.1 20 17.7 20.3 17.5 20.4C17.3 20.6 16.9 20.9 16.5 21.1C15.1 21.9 14.6 22.2 14.2 22.5C14 22.6 13.6 22.9 13.3 23C13 23.2 12.6 23.4 12.4 23.6C12.2 23.8 11.9 24 11.8 24C11.8 24 11.5 24.1 11.4 24.3C11.2 24.4 10.8 24.7 10.4 24.9C10.1 25.2 9.4 25.7 8.9 26.2C8.5 26.6 8 27 8 27C7.6 27 4.7 30.3 4.2 31.2C3.8 32 4 33.3 4.7 34.3C5.3 35.3 7 37 7.3 37C7.4 37 7.7 37.2 8 37.5C8.3 37.7 8.8 38.1 9 38.2C9.2 38.3 9.6 38.5 9.7 38.6C9.8 38.8 10.3 38.9 10.7 39C11.1 39.1 11.6 39.4 11.7 39.5C11.9 39.7 12.3 39.9 12.8 40C13.2 40.1 13.8 40.3 14.1 40.5C14.4 40.6 15.1 40.9 15.5 41C15.9 41.1 16.7 41.3 17.1 41.5C17.7 41.7 18.3 41.9 19 42C19.7 42.1 20.7 42.3 21.3 42.5C22 42.7 22.9 42.9 23.4 43C24.5 43.1 24.8 43.3 24.7 44.2C24.7 44.5 24.8 45.2 24.8 45.6C24.8 46.1 24.9 47.8 25 49.5C25.2 52.9 25.2 52.9 26 53.1C26.8 53.2 27.1 52.7 26.7 51.6C26.6 51.3 26.5 50.8 26.5 50.5C26.5 50.1 26.4 49.6 26.4 49.4C26.3 49.1 26.2 48.1 26.2 47.1C26.2 46.1 26.1 45 26.1 44.7C26 43.8 26.2 43.4 26.8 43.5C27.7 43.5 28.9 43.7 29.1 43.8C29.6 44.1 41.1 44.1 42 43.8C42.3 43.7 42.7 43.7 43 43.7C43.3 43.8 43.6 43.7 43.9 43.6C44.7 43.1 45.2 43.6 45.1 44.6C45 44.9 45 46.6 44.9 48.2C44.9 49.9 44.8 51.5 44.7 51.7C44.4 52.7 45.2 53.8 45.8 53.1ZM33.9 42.8C33.9 42.8 32.9 42.7 31.8 42.6C30.6 42.5 29.4 42.4 29 42.3C28.6 42.2 27.9 42.1 27.3 42.1C26 42.1 25.9 42 25.7 40.6C25.4 37.5 26.1 37.1 28.8 39C29.7 39.5 30.7 40.1 31 40.2C31.4 40.3 31.9 40.5 32.1 40.6C34.5 41.8 39.4 41.1 42.4 39C44.9 37.3 46.2 37.5 45.8 39.8C45.7 40.1 45.6 40.7 45.6 41C45.6 42 45.1 42.1 40.8 42.5C40.1 42.6 39.2 42.7 38.7 42.7C37.9 42.9 34.2 42.9 33.9 42.8ZM47.1 41.4C46.8 41.1 47 38.9 47.3 37.9C47.5 37.4 47.9 37.1 48.3 37.3C48.4 37.4 50.9 36.9 52.1 36.6C52.5 36.5 53.5 36.2 54.2 36C54.9 35.8 55.6 35.6 55.9 35.4C56.2 35.3 56.8 35.2 57.2 35.1C57.7 34.9 58.3 34.7 58.7 34.5C59 34.3 59.6 34.1 60 34C60.9 33.7 63 32.4 64 31.6C64.8 30.9 65.6 31.1 65.9 32.2C66.1 33.1 66 33.3 65.5 34C65.2 34.3 64.8 34.8 64.6 35C64.4 35.3 64 35.6 63.7 35.8C62.8 36.3 61.8 36.9 61.2 37.4C60.9 37.6 60.4 37.9 60 38C59.6 38.1 59 38.4 58.7 38.5C58.3 38.7 57.8 38.9 57.5 39C57.2 39.1 56.7 39.3 56.4 39.4C56.2 39.6 55.5 39.8 54.9 39.9C54.4 40 53.7 40.3 53.3 40.5C52.9 40.7 52.3 40.8 51.2 40.9C49.8 41.1 48.8 41.4 48.3 41.6C47.8 41.9 47.3 41.8 47.1 41.4ZM22.4 41.4C22.2 41.3 21.2 41.1 20.2 40.9C19.3 40.8 18.3 40.5 18.1 40.4C17.9 40.3 17.2 40.1 16.7 40C16.1 39.9 15.4 39.7 15.2 39.5C14.9 39.4 14.1 39.1 13.5 38.9C12.9 38.8 12.2 38.5 12 38.4C11.8 38.2 11.3 38 11 37.9C10.6 37.7 10.2 37.5 10 37.3C9.8 37.2 9.5 36.9 9.2 36.8C8.9 36.7 8.5 36.4 8.2 36.2C7.9 35.9 7.4 35.4 7 35.1C6.6 34.9 6.2 34.4 6 34.2C5.9 34 5.7 33.7 5.5 33.5C5 32.8 5.2 32 6 31.3C6.5 30.9 6.5 30.9 7.3 31.6C7.7 32 8.3 32.4 8.7 32.6C9 32.8 9.5 33.1 9.8 33.3C10.2 33.7 10.9 34 11.3 34C11.4 34 11.7 34.1 11.9 34.2C12.6 34.6 16 35.7 17.2 36C17.6 36.1 18.2 36.3 18.5 36.4C19.1 36.6 21.6 37.1 22.6 37.3C24 37.4 24.2 37.8 24.2 39.9C24.2 41.7 23.9 42 22.4 41.4ZM33.2 39.7C32.2 39.4 30.7 38.8 30.4 38.5C30.2 38.4 29.8 38.1 29.4 37.8C28.5 37.2 27.5 36.1 27.1 35.2C26.9 34.7 26.7 34.1 26.6 33.9C26.5 33.7 26.2 32.9 25.9 32C25.7 31.1 25.3 30 25.2 29.4C24.8 28.1 24.8 27.7 25.2 27.4C25.6 27.1 34.3 27 42.8 27.2C46.9 27.3 46.8 27.2 45.6 31.1C45.5 31.5 45.2 32.4 45.1 33C44.4 35.6 41.7 38.6 39.6 39.1C39.4 39.1 38.9 39.3 38.6 39.5C37.8 39.9 34.3 40 33.2 39.7ZM36.6 36C37.5 35.9 39.5 34.9 39.7 34.5C40.1 33.8 39.8 33.4 38.8 33.1C38.5 33.1 38 32.9 37.6 32.9C35.6 32.3 31.7 33 31.4 33.9C31.2 34.6 33.1 35.8 34.8 36C35.3 36 35.7 36.1 35.8 36.1C35.8 36.1 36.2 36.1 36.6 36ZM35.2 34.4C35.2 34.2 35.3 34.1 35.6 34.1C36.1 34.2 36.1 34.6 35.6 34.6C35.3 34.6 35.2 34.6 35.2 34.4ZM48.2 31.6C47.7 31.4 47.6 31.1 47.7 30.2C47.8 29.9 47.8 29.3 47.8 29C47.6 27.7 48.2 27.4 50.7 27.7C51.8 27.8 53.8 28 55.1 28C57.7 28.2 57.9 28.2 57.9 28.6C57.9 29 56.4 29.8 54.9 30.1C54.5 30.2 53.7 30.4 53.1 30.6C52.5 30.8 51.6 31 51.1 31.1C50.6 31.2 49.9 31.4 49.6 31.5C49 31.8 48.6 31.8 48.2 31.6ZM21.9 31.5C21.7 31.4 21.1 31.3 20.5 31.2C19.9 31.1 19.2 30.9 18.8 30.7C18.4 30.6 17.5 30.4 16.9 30.2C12.2 29.2 12.6 28.3 17.8 27.9C19.3 27.8 20.8 27.7 21.3 27.6C23.1 27.2 23.5 27.6 23.5 29.8C23.5 31.6 23.1 32 21.9 31.5ZM36.8 30.2C38.2 29.6 37.8 28.6 36.3 29C35.7 29.1 35.5 29.1 34.9 29C34 28.7 33.7 28.8 33.8 29.4C33.8 30.2 35.5 30.7 36.8 30.2ZM60.5 27.9C59.5 27.4 58.2 27.1 56.9 27C54 26.8 52.5 26.6 51.9 26.5C49.9 26 26.6 25.7 26 26.1C25.9 26.1 24.7 26.2 23.3 26.2C21.9 26.3 19.6 26.5 18.3 26.6C17 26.7 15.3 26.9 14.5 27C13.6 27.1 12.8 27.2 12 27.5C9 28.5 8.4 27.5 11.1 25.9C11.3 25.8 11.8 25.5 12.1 25.4C12.4 25.2 12.8 24.9 13 24.7C13.2 24.5 13.5 24.3 13.8 24.2C14.1 24.1 14.5 23.8 14.7 23.7C15 23.4 15.3 23.2 16.8 22.3C17 22.2 17.4 21.9 17.8 21.7C18.1 21.4 18.6 21.2 18.8 21.1C19.1 21 19.4 20.8 19.6 20.7C19.8 20.5 20.3 20.2 20.8 20.1C21.2 19.9 21.9 19.6 22.2 19.3C22.6 19.1 23.2 18.8 23.5 18.8C23.8 18.7 24.4 18.5 24.8 18.3C25.1 18.1 25.9 17.8 26.5 17.6C27 17.3 27.9 17 28.4 16.9C29 16.7 29.8 16.5 30.3 16.3C33.4 15.3 39.8 15.4 41.9 16.5C42.2 16.6 42.7 16.8 43 16.9C43.4 17 43.9 17.2 44.2 17.3C44.5 17.5 45 17.7 45.4 17.8C45.8 17.9 46.4 18.2 46.8 18.4C47.1 18.6 47.6 18.8 47.9 18.9C48.2 19 48.6 19.1 48.9 19.1C49.2 19.2 49.5 19.4 49.7 19.6C49.9 19.7 50.3 20 50.6 20.1C50.9 20.2 51.3 20.4 51.4 20.5C51.6 20.6 52 20.9 52.3 21C52.7 21.2 53.2 21.5 53.5 21.7C54.2 22.1 55.3 22.8 56.6 23.5C57 23.8 57.7 24.2 58 24.5C58.3 24.7 58.8 25.1 59.1 25.3C62 27.3 62.3 27.6 61.8 28C61.5 28.2 61.2 28.2 60.5 27.9ZM22.3 14.2C22 13.7 22 13.4 22.6 11.9C23 10.8 23.4 10.1 23.8 9.6C24.9 8.3 25.9 7.2 26.4 7C26.7 6.8 27.1 6.6 27.3 6.4C27.5 6.3 27.9 6.1 28.3 6C28.7 5.9 29.3 5.7 29.6 5.5C30.5 5 41.1 5 42 5.5C42.4 5.7 42.9 6 43.1 6.1C44.5 6.6 46.2 8 47.6 9.9C48.7 11.4 48.6 11.2 48.9 12.4C49.4 14.3 48.9 14.7 47.2 13.8C46.7 13.5 46.1 13.2 45.9 13.2C45.6 13.1 45 12.9 44.4 12.7C43.4 12.3 42.5 12 40.2 11.4C39.1 11.1 35.1 10.8 34.4 10.9C34.2 11 33.5 11.1 32.8 11.1C32.1 11.2 31.2 11.4 30.8 11.5C30.4 11.6 29.7 11.8 29.2 11.9C28.3 12.1 25.7 13 24.2 13.8C22.9 14.4 22.6 14.5 22.3 14.2Z"/>
+      <path id="lg-face-outline" d="M33.2 39.7C32.2 39.4 30.7 38.8 30.4 38.5C30.2 38.4 29.8 38.1 29.4 37.8C28.5 37.2 27.5 36.1 27.1 35.2C26.9 34.7 26.7 34.1 26.6 33.9C26.5 33.7 26.2 32.9 25.9 32C25.7 31.1 25.3 30 25.2 29.4C24.8 28.1 24.8 27.7 25.2 27.4C25.6 27.1 34.3 27 42.8 27.2C46.9 27.3 46.8 27.2 45.6 31.1C45.5 31.5 45.2 32.4 45.1 33C44.4 35.6 41.7 38.6 39.6 39.1C39.4 39.1 38.9 39.3 38.6 39.5C37.8 39.9 34.3 40 33.2 39.7Z"/>
+      <mask id="lg-m-face" maskUnits="userSpaceOnUse" x="-2" y="-2" width="75" height="61">
+        <use href="#lg-face-outline" fill="#fff" stroke="#fff" stroke-width="0.9" stroke-linejoin="round"/>
+      </mask>
+      <mask id="lg-m-hat" maskUnits="userSpaceOnUse" x="-2" y="-2" width="75" height="61">
+        <rect x="-2" y="-2" width="75" height="61" fill="#fff"/>
+        <use href="#lg-face-outline" fill="#000" stroke="#000" stroke-width="0.9" stroke-linejoin="round"/>
+      </mask>
+      <path id="lg-spark" d="M0-2.6C.3-.9.9-.3 2.6 0 .9.3.3.9 0 2.6-.3.9-.9.3-2.6 0-.9-.3-.3-.9 0-2.6z"/>
+    </defs>
+  </svg>
+  <div id="intro" aria-hidden="true">
+    <div class="i-stack">
+      <svg class="i-mark" viewBox="0 0 71 57" focusable="false">
+        <g fill="currentColor">
+          <g transform="translate(9.5 13)"><use class="i-star i-s1" href="#lg-spark"/></g>
+          <g transform="translate(61.5 10.5)"><use class="i-star i-s2" href="#lg-spark"/></g>
+          <g transform="translate(66.5 22)"><use class="i-star i-s3" href="#lg-spark"/></g>
+        </g>
+        <g class="i-face" mask="url(#lg-m-face)"><use href="#lg-logo" fill="currentColor"/></g>
+        <g class="i-hat"><g mask="url(#lg-m-hat)"><use href="#lg-logo" fill="currentColor"/></g></g>
+      </svg>
+      <div class="i-word">Oasis Kafe</div>
+    </div>
+  </div>
+  <script>
+  // Intro de marca. Un toque, una tecla o un gesto de scroll la saltan. Se muestra una vez por sesion.
+  // Cuando la intro se va (o si no se muestra), arranca la animacion del icono de la cabecera.
+  (function () {
+    var raiz = document.documentElement;
+    function jugarIcono() { raiz.classList.add('lg-play'); }
+    var el = document.getElementById('intro');
+    if (!el) { jugarIcono(); return; }
+    var q = location.search;
+    var forzar = /[?&]intro(=|&|$)/.test(q);
+    var salta = /[?&]sin-intro(=|&|$)/.test(q);
+    var visto = false;
+    try { visto = sessionStorage.getItem('oasis-intro') === '1'; } catch (e) {}
+    if (salta || (visto && !forzar)) { el.parentNode.removeChild(el); jugarIcono(); return; }
+    try { sessionStorage.setItem('oasis-intro', '1'); } catch (e) {}
+    var meta = document.querySelector('meta[name="theme-color"]');
+    var color = meta ? meta.getAttribute('content') : null;
+    if (meta) meta.setAttribute('content', '#775B43');
+    var evs = ['pointerdown', 'keydown', 'wheel', 'touchmove'];
+    // El icono arranca justo cuando la intro empieza a fundirse (3,5 s); si se salta, al instante
+    var tIcono = setTimeout(jugarIcono, 3500);
+    function saltar() { el.classList.add('i-skip'); clearTimeout(tIcono); jugarIcono(); }
+    function cerrar() {
+      evs.forEach(function (n) { window.removeEventListener(n, saltar, true); });
+      if (meta && color) meta.setAttribute('content', color);
+      if (el.parentNode) el.parentNode.removeChild(el);
+      jugarIcono();
+    }
+    evs.forEach(function (n) { window.addEventListener(n, saltar, { passive: true, capture: true }); });
+    el.addEventListener('animationend', function (e) {
+      if (e.target === el && e.animationName === 'i-out') cerrar();
+    });
+    setTimeout(cerrar, 4400);
+  })();
+  </script>
   <a class="skip-link" href="#contenido" data-i18n="skip">Saltar al contenido</a>
 
   <div id="toastMsg" class="toast" role="status" aria-live="polite"></div>
@@ -2015,7 +2229,7 @@ h1, h2, h3, .font-serif {
   <header class="site-header">
     <div class="container header-inner">
       <a href="#top" class="brand-link">
-        <span class="brand-logo"><img src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3MSA1NyI+PHBhdGggZmlsbD0iI0ZCRjdFRCIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMjUuMiA1NC40QzI0LjMgNTMuOCAyMy45IDUxIDIzLjggNDUuNkMyMy44IDQ0LjQgMjMuNSA0NC4xIDIxLjkgNDMuOUMyMS41IDQzLjggMjAuOCA0My42IDIwLjQgNDMuNEMyMCA0My4zIDE5LjEgNDMuMSAxOC41IDQzQzE3LjYgNDIuOSAxNy4yIDQyLjggMTYuOSA0Mi42QzE2LjYgNDIuNCAxNi4xIDQyLjIgMTUuNyA0Mi4xQzE0LjcgNDIgMTQuMyA0MS45IDEzLjkgNDEuNkMxMy42IDQxLjQgMTMuMSA0MS4yIDEyLjcgNDEuMUMxMi4zIDQxIDExLjcgNDAuOCAxMS41IDQwLjdDMTEuMyA0MC41IDEwLjggNDAuMyAxMC40IDQwLjJDMTAgNDAuMSA5LjYgMzkuOCA5LjQgMzkuN0M5LjIgMzkuNSA4LjkgMzkuMyA4LjcgMzkuMkM3LjcgMzguNyA2LjUgMzcuOCA1LjQgMzYuOEM0LjggMzYuMiA0LjMgMzUuOCA0LjIgMzUuOEM0LjIgMzUuOCA0IDM1LjUgMy45IDM1LjJDMy43IDM0LjggMy41IDM0LjQgMy4zIDM0LjNDMi44IDMzLjcgMi44IDMxIDMuNCAzMC40QzMuNiAzMC4yIDMuOCAyOS44IDQgMjkuNkM0LjQgMjguOCA2LjQgMjYuOCA3LjkgMjUuN0M4LjMgMjUuMyA5IDI0LjggOS4zIDI0LjVDMTAuMiAyMy43IDEwLjkgMjMuMiAxMS4zIDIzQzExLjUgMjIuOSAxMS45IDIyLjcgMTIuMSAyMi41QzEyLjMgMjIuMyAxMi44IDIyIDEzIDIxLjlDMTMuMyAyMS44IDEzLjcgMjEuNSAxMy45IDIxLjRDMTQgMjEuMiAxNC41IDIxIDE0LjggMjAuOEMxNS4xIDIwLjYgMTUuNCAyMC40IDE1LjQgMjAuNEMxNS40IDIwLjMgMTUuNyAyMC4xIDE2LjEgMTkuOUMxNi41IDE5LjcgMTcgMTkuNSAxNy4yIDE5LjNDMTcuNCAxOS4xIDE3LjggMTguOSAxOC4xIDE4LjlDMTkgMTguNiAxOS44IDE3LjQgMTkuNyAxNi4yQzE5LjUgMTQuMiAxOS44IDExLjkgMjAuNSAxMC43QzIwLjcgMTAuNCAyMC45IDkuOSAyMC45IDkuN0MyMSA5LjYgMjEuMSA5LjMgMjEuMyA5LjFDMjEuNCA4LjkgMjEuNyA4LjYgMjEuOSA4LjJDMjIuMyA3LjYgMjQuNSA1LjUgMjUuMSA1LjFDMjUuNCA1IDI1LjggNC43IDI2LjEgNC41QzI2LjQgNC4yIDI2LjggNCAyNy4xIDMuOUMyNy4zIDMuOSAyOCAzLjYgMjguNiAzLjRDMzAgMi43IDQxLjYgMi43IDQyLjggMy4zQzQzLjMgMy42IDQzLjggMy44IDQ0LjEgMy44QzQ0LjMgMy45IDQ0LjcgNC4xIDQ1IDQuM0M0NS4yIDQuNSA0NS43IDQuOCA0NS45IDQuOUM0Ni4yIDUgNDYuNiA1LjMgNDYuOCA1LjVDNDcgNS43IDQ3LjYgNi4yIDQ4IDYuNkM0OC40IDcgNDguOSA3LjUgNDkgNy43QzQ5LjIgOCA0OS40IDguNCA0OS42IDguNkM0OS44IDguOCA1MC4xIDkuMiA1MC4yIDkuNUM1MC4zIDkuOCA1MC42IDEwLjIgNTAuNyAxMC41QzUwLjkgMTAuNyA1MS4xIDExLjIgNTEuMiAxMkM1MS4zIDEyLjYgNTEuNSAxMy4zIDUxLjYgMTMuNkM1MS44IDE0IDUxLjkgMTQuMyA1MS45IDE1LjZDNTEuOCAxNy44IDUyLjEgMTguNSA1My4xIDE4LjlDNTMuNSAxOS4xIDU0IDE5LjQgNTQuMyAxOS41QzU0LjYgMTkuNyA1NC44IDE5LjkgNTQuOSAxOS45QzU1IDE5LjkgNTUuNSAyMC4xIDU1LjkgMjAuNEM1Ni40IDIwLjcgNTYuOSAyMSA1Ni45IDIxQzU3IDIxIDU3LjQgMjEuMiA1Ny43IDIxLjVDNTguMSAyMS43IDU4LjUgMjIgNTguNyAyMi4yQzU5LjIgMjIuNSA1OS45IDIyLjkgNjAuNCAyMy40QzYxIDIzLjggNjEuNCAyNC4xIDYyLjUgMjQuOEM2Mi44IDI1LjEgNjMuMiAyNS40IDYzLjMgMjUuNUM2My4zIDI1LjYgNjMuNiAyNS45IDYzLjkgMjZDNjQuOCAyNi41IDY3LjEgMjkuMSA2OCAzMC43QzY4LjUgMzEuNyA2OC4zIDM0LjIgNjcuNSAzNS4yQzY2LjcgMzYuMiA2NC43IDM4LjEgNjQuNCAzOC4xQzY0LjMgMzguMSA2NC4xIDM4LjMgNjMuOCAzOC41QzYzLjYgMzguNyA2My4xIDM5IDYyLjggMzkuMUM2Mi41IDM5LjMgNjIgMzkuNSA2MS44IDM5LjdDNjEuNiAzOS44IDYxLjIgNDAgNjAuOSA0MC4xQzYwLjcgNDAuMiA2MC4yIDQwLjQgNjAgNDAuNkM1OS43IDQwLjggNTkuMiA0MSA1OC44IDQxLjFDNTguNSA0MS4yIDU3LjkgNDEuNCA1Ny42IDQxLjVDNTcuMyA0MS43IDU2LjUgNDIgNTUuOSA0Mi4xQzU1LjIgNDIuMyA1NC41IDQyLjUgNTQuMiA0Mi42QzUzLjYgNDIuOSA1Mi4xIDQzLjIgNTEuMiA0My4yQzUwLjggNDMuMiA1MC42IDQzLjMgNTAuMiA0My42QzQ5LjkgNDMuOCA0OS43IDQzLjkgNDkuMiA0My45QzQ4LjIgNDMuOCA0Ny4zIDQ0LjUgNDcuNiA0NS4xQzQ3LjcgNDUuNCA0Ny43IDQ1LjYgNDcuNiA0Ni4xQzQ3LjQgNDYuOCA0Ny4zIDQ3LjggNDcuMSA1MUM0NyA1My45IDQ3IDU0IDQ2IDU0LjNDNDMuNiA1NSA0My40IDU0LjMgNDQgNDcuMkM0NC4yIDQ0LjkgNDMuOSA0NC40IDQyLjUgNDQuOEM0MS4yIDQ1LjIgMzAuOSA0NS4yIDI4LjIgNDQuOEMyNyA0NC43IDI2LjYgNDcuOCAyNy41IDUwLjZDMjcuOSA1MS44IDI4IDUzLjUgMjcuNiA1My45QzI3LjEgNTQuNSAyNS44IDU0LjggMjUuMiA1NC40Wk00NS44IDUzLjFDNDUuOSA1MyA0NiA1Mi43IDQ2IDUyLjRDNDYuMSA0OS4yIDQ2LjQgNDUuNyA0Ni43IDQ1LjFDNDYuOCA0NC45IDQ2LjkgNDQuNiA0Ni44IDQ0LjFDNDYuNyA0My4yIDQ2LjkgNDMgNDggNDNDNDguNSA0MyA0OSA0Mi45IDQ5LjYgNDIuNkM1MC4xIDQyLjQgNTAuOCA0Mi4yIDUxLjUgNDIuMUM1MyA0MiA1My4yIDQxLjkgNTMuOCA0MS42QzU0LjEgNDEuNCA1NC43IDQxLjIgNTUuMyA0MS4xQzU1LjggNDEgNTYuNSA0MC44IDU2LjggNDAuNkM1Ny4yIDQwLjQgNTcuOCA0MC4yIDU4LjIgNDAuMUM1OC43IDQwIDU5LjMgMzkuNyA1OS41IDM5LjZDNTkuNyAzOS40IDYwLjIgMzkuMiA2MC42IDM5LjFDNjAuOSAzOSA2MS4zIDM4LjggNjEuNCAzOC42QzYxLjYgMzguNSA2MiAzOC4yIDYyLjQgMzhDNjIuOCAzNy44IDYzLjMgMzcuNSA2My41IDM3LjNDNjMuNyAzNy4xIDYzLjkgMzcgNjQgMzdDNjQgMzcgNjQuNCAzNi44IDY0LjcgMzYuNUM2NSAzNi4yIDY1LjQgMzYgNjUuNSAzNS45QzY1LjYgMzUuOSA2NS45IDM1LjYgNjYuMSAzNS4yQzY2LjQgMzQuOSA2Ni43IDM0LjMgNjYuOSAzNEM2Ny4zIDMzLjQgNjcuMyAzMy4yIDY3LjEgMzEuOUM2NyAzMS4yIDY2LjkgMzAuOSA2Ni42IDMwLjZDNjYuNCAzMC40IDY2LjIgMzAgNjYgMjkuOEM2NS43IDI5LjIgNjIuOSAyNi40IDYyLjQgMjYuMUM2Mi4xIDI1LjkgNjEuNyAyNS42IDYxLjQgMjUuNEM2MS4xIDI1LjEgNjAuNiAyNC43IDYwLjIgMjQuNUM1OS45IDI0LjMgNTkuMyAyMy45IDU5IDIzLjZDNTguNyAyMy4zIDU4LjMgMjMuMSA1OC4zIDIzLjFDNTguMiAyMy4xIDU3LjcgMjIuOSA1Ny4yIDIyLjVDNTUuOSAyMS43IDU0LjggMjEgNTQuNiAyMUM1NC42IDIxIDU0LjIgMjAuOCA1My45IDIwLjVDNTMuNiAyMC4zIDUzLjEgMjAgNTIuOCAxOS45QzUxLjEgMTkuNCA1MC43IDE4LjQgNTAuNyAxNS40QzUwLjggMTQuMyA1MC43IDEzLjkgNTAuNiAxMy42QzUwLjQgMTMuNCA1MC4yIDEyLjcgNTAuMSAxMkM0OS45IDExLjEgNDkuOCAxMC43IDQ5LjUgMTAuNUM0OS40IDEwLjMgNDkuMSA5LjkgNDguOSA5LjVDNDguNiA4LjggNDYuNiA2LjcgNDUuNiA2LjFDNDUuMiA1LjggNDQuOSA1LjYgNDQuOCA1LjVDNDQuNyA1LjQgNDQuMyA1LjIgNDQgNS4xQzQzLjYgNC45IDQyLjkgNC42IDQyLjUgNC40QzQxLjMgMy43IDMwLjYgMy43IDI5LjMgNC4zQzI4LjkgNC42IDI4LjUgNC43IDI4LjQgNC43QzI3LjUgNC43IDI0LjggNi41IDIzLjcgNy45QzIzLjMgOC4zIDIyLjkgOC45IDIyLjYgOS4yQzIyLjQgOS41IDIyLjEgOS45IDIyIDEwLjJDMjEuOCAxMC42IDIxLjYgMTEgMjEuNCAxMS4zQzIxIDExLjggMjAuOSAxMi41IDIwLjggMTVDMjAuNSAxOC41IDIwLjIgMTkuMyAxOC41IDE5LjlDMTguMSAyMCAxNy43IDIwLjMgMTcuNSAyMC40QzE3LjMgMjAuNiAxNi45IDIwLjkgMTYuNSAyMS4xQzE1LjEgMjEuOSAxNC42IDIyLjIgMTQuMiAyMi41QzE0IDIyLjYgMTMuNiAyMi45IDEzLjMgMjNDMTMgMjMuMiAxMi42IDIzLjQgMTIuNCAyMy42QzEyLjIgMjMuOCAxMS45IDI0IDExLjggMjRDMTEuOCAyNCAxMS41IDI0LjEgMTEuNCAyNC4zQzExLjIgMjQuNCAxMC44IDI0LjcgMTAuNCAyNC45QzEwLjEgMjUuMiA5LjQgMjUuNyA4LjkgMjYuMkM4LjUgMjYuNiA4IDI3IDggMjdDNy42IDI3IDQuNyAzMC4zIDQuMiAzMS4yQzMuOCAzMiA0IDMzLjMgNC43IDM0LjNDNS4zIDM1LjMgNyAzNyA3LjMgMzdDNy40IDM3IDcuNyAzNy4yIDggMzcuNUM4LjMgMzcuNyA4LjggMzguMSA5IDM4LjJDOS4yIDM4LjMgOS42IDM4LjUgOS43IDM4LjZDOS44IDM4LjggMTAuMyAzOC45IDEwLjcgMzlDMTEuMSAzOS4xIDExLjYgMzkuNCAxMS43IDM5LjVDMTEuOSAzOS43IDEyLjMgMzkuOSAxMi44IDQwQzEzLjIgNDAuMSAxMy44IDQwLjMgMTQuMSA0MC41QzE0LjQgNDAuNiAxNS4xIDQwLjkgMTUuNSA0MUMxNS45IDQxLjEgMTYuNyA0MS4zIDE3LjEgNDEuNUMxNy43IDQxLjcgMTguMyA0MS45IDE5IDQyQzE5LjcgNDIuMSAyMC43IDQyLjMgMjEuMyA0Mi41QzIyIDQyLjcgMjIuOSA0Mi45IDIzLjQgNDNDMjQuNSA0My4xIDI0LjggNDMuMyAyNC43IDQ0LjJDMjQuNyA0NC41IDI0LjggNDUuMiAyNC44IDQ1LjZDMjQuOCA0Ni4xIDI0LjkgNDcuOCAyNSA0OS41QzI1LjIgNTIuOSAyNS4yIDUyLjkgMjYgNTMuMUMyNi44IDUzLjIgMjcuMSA1Mi43IDI2LjcgNTEuNkMyNi42IDUxLjMgMjYuNSA1MC44IDI2LjUgNTAuNUMyNi41IDUwLjEgMjYuNCA0OS42IDI2LjQgNDkuNEMyNi4zIDQ5LjEgMjYuMiA0OC4xIDI2LjIgNDcuMUMyNi4yIDQ2LjEgMjYuMSA0NSAyNi4xIDQ0LjdDMjYgNDMuOCAyNi4yIDQzLjQgMjYuOCA0My41QzI3LjcgNDMuNSAyOC45IDQzLjcgMjkuMSA0My44QzI5LjYgNDQuMSA0MS4xIDQ0LjEgNDIgNDMuOEM0Mi4zIDQzLjcgNDIuNyA0My43IDQzIDQzLjdDNDMuMyA0My44IDQzLjYgNDMuNyA0My45IDQzLjZDNDQuNyA0My4xIDQ1LjIgNDMuNiA0NS4xIDQ0LjZDNDUgNDQuOSA0NSA0Ni42IDQ0LjkgNDguMkM0NC45IDQ5LjkgNDQuOCA1MS41IDQ0LjcgNTEuN0M0NC40IDUyLjcgNDUuMiA1My44IDQ1LjggNTMuMVpNMzMuOSA0Mi44QzMzLjkgNDIuOCAzMi45IDQyLjcgMzEuOCA0Mi42QzMwLjYgNDIuNSAyOS40IDQyLjQgMjkgNDIuM0MyOC42IDQyLjIgMjcuOSA0Mi4xIDI3LjMgNDIuMUMyNiA0Mi4xIDI1LjkgNDIgMjUuNyA0MC42QzI1LjQgMzcuNSAyNi4xIDM3LjEgMjguOCAzOUMyOS43IDM5LjUgMzAuNyA0MC4xIDMxIDQwLjJDMzEuNCA0MC4zIDMxLjkgNDAuNSAzMi4xIDQwLjZDMzQuNSA0MS44IDM5LjQgNDEuMSA0Mi40IDM5QzQ0LjkgMzcuMyA0Ni4yIDM3LjUgNDUuOCAzOS44QzQ1LjcgNDAuMSA0NS42IDQwLjcgNDUuNiA0MUM0NS42IDQyIDQ1LjEgNDIuMSA0MC44IDQyLjVDNDAuMSA0Mi42IDM5LjIgNDIuNyAzOC43IDQyLjdDMzcuOSA0Mi45IDM0LjIgNDIuOSAzMy45IDQyLjhaTTQ3LjEgNDEuNEM0Ni44IDQxLjEgNDcgMzguOSA0Ny4zIDM3LjlDNDcuNSAzNy40IDQ3LjkgMzcuMSA0OC4zIDM3LjNDNDguNCAzNy40IDUwLjkgMzYuOSA1Mi4xIDM2LjZDNTIuNSAzNi41IDUzLjUgMzYuMiA1NC4yIDM2QzU0LjkgMzUuOCA1NS42IDM1LjYgNTUuOSAzNS40QzU2LjIgMzUuMyA1Ni44IDM1LjIgNTcuMiAzNS4xQzU3LjcgMzQuOSA1OC4zIDM0LjcgNTguNyAzNC41QzU5IDM0LjMgNTkuNiAzNC4xIDYwIDM0QzYwLjkgMzMuNyA2MyAzMi40IDY0IDMxLjZDNjQuOCAzMC45IDY1LjYgMzEuMSA2NS45IDMyLjJDNjYuMSAzMy4xIDY2IDMzLjMgNjUuNSAzNEM2NS4yIDM0LjMgNjQuOCAzNC44IDY0LjYgMzVDNjQuNCAzNS4zIDY0IDM1LjYgNjMuNyAzNS44QzYyLjggMzYuMyA2MS44IDM2LjkgNjEuMiAzNy40QzYwLjkgMzcuNiA2MC40IDM3LjkgNjAgMzhDNTkuNiAzOC4xIDU5IDM4LjQgNTguNyAzOC41QzU4LjMgMzguNyA1Ny44IDM4LjkgNTcuNSAzOUM1Ny4yIDM5LjEgNTYuNyAzOS4zIDU2LjQgMzkuNEM1Ni4yIDM5LjYgNTUuNSAzOS44IDU0LjkgMzkuOUM1NC40IDQwIDUzLjcgNDAuMyA1My4zIDQwLjVDNTIuOSA0MC43IDUyLjMgNDAuOCA1MS4yIDQwLjlDNDkuOCA0MS4xIDQ4LjggNDEuNCA0OC4zIDQxLjZDNDcuOCA0MS45IDQ3LjMgNDEuOCA0Ny4xIDQxLjRaTTIyLjQgNDEuNEMyMi4yIDQxLjMgMjEuMiA0MS4xIDIwLjIgNDAuOUMxOS4zIDQwLjggMTguMyA0MC41IDE4LjEgNDAuNEMxNy45IDQwLjMgMTcuMiA0MC4xIDE2LjcgNDBDMTYuMSAzOS45IDE1LjQgMzkuNyAxNS4yIDM5LjVDMTQuOSAzOS40IDE0LjEgMzkuMSAxMy41IDM4LjlDMTIuOSAzOC44IDEyLjIgMzguNSAxMiAzOC40QzExLjggMzguMiAxMS4zIDM4IDExIDM3LjlDMTAuNiAzNy43IDEwLjIgMzcuNSAxMCAzNy4zQzkuOCAzNy4yIDkuNSAzNi45IDkuMiAzNi44QzguOSAzNi43IDguNSAzNi40IDguMiAzNi4yQzcuOSAzNS45IDcuNCAzNS40IDcgMzUuMUM2LjYgMzQuOSA2LjIgMzQuNCA2IDM0LjJDNS45IDM0IDUuNyAzMy43IDUuNSAzMy41QzUgMzIuOCA1LjIgMzIgNiAzMS4zQzYuNSAzMC45IDYuNSAzMC45IDcuMyAzMS42QzcuNyAzMiA4LjMgMzIuNCA4LjcgMzIuNkM5IDMyLjggOS41IDMzLjEgOS44IDMzLjNDMTAuMiAzMy43IDEwLjkgMzQgMTEuMyAzNEMxMS40IDM0IDExLjcgMzQuMSAxMS45IDM0LjJDMTIuNiAzNC42IDE2IDM1LjcgMTcuMiAzNkMxNy42IDM2LjEgMTguMiAzNi4zIDE4LjUgMzYuNEMxOS4xIDM2LjYgMjEuNiAzNy4xIDIyLjYgMzcuM0MyNCAzNy40IDI0LjIgMzcuOCAyNC4yIDM5LjlDMjQuMiA0MS43IDIzLjkgNDIgMjIuNCA0MS40Wk0zMy4yIDM5LjdDMzIuMiAzOS40IDMwLjcgMzguOCAzMC40IDM4LjVDMzAuMiAzOC40IDI5LjggMzguMSAyOS40IDM3LjhDMjguNSAzNy4yIDI3LjUgMzYuMSAyNy4xIDM1LjJDMjYuOSAzNC43IDI2LjcgMzQuMSAyNi42IDMzLjlDMjYuNSAzMy43IDI2LjIgMzIuOSAyNS45IDMyQzI1LjcgMzEuMSAyNS4zIDMwIDI1LjIgMjkuNEMyNC44IDI4LjEgMjQuOCAyNy43IDI1LjIgMjcuNEMyNS42IDI3LjEgMzQuMyAyNyA0Mi44IDI3LjJDNDYuOSAyNy4zIDQ2LjggMjcuMiA0NS42IDMxLjFDNDUuNSAzMS41IDQ1LjIgMzIuNCA0NS4xIDMzQzQ0LjQgMzUuNiA0MS43IDM4LjYgMzkuNiAzOS4xQzM5LjQgMzkuMSAzOC45IDM5LjMgMzguNiAzOS41QzM3LjggMzkuOSAzNC4zIDQwIDMzLjIgMzkuN1pNMzYuNiAzNkMzNy41IDM1LjkgMzkuNSAzNC45IDM5LjcgMzQuNUM0MC4xIDMzLjggMzkuOCAzMy40IDM4LjggMzMuMUMzOC41IDMzLjEgMzggMzIuOSAzNy42IDMyLjlDMzUuNiAzMi4zIDMxLjcgMzMgMzEuNCAzMy45QzMxLjIgMzQuNiAzMy4xIDM1LjggMzQuOCAzNkMzNS4zIDM2IDM1LjcgMzYuMSAzNS44IDM2LjFDMzUuOCAzNi4xIDM2LjIgMzYuMSAzNi42IDM2Wk0zNS4yIDM0LjRDMzUuMiAzNC4yIDM1LjMgMzQuMSAzNS42IDM0LjFDMzYuMSAzNC4yIDM2LjEgMzQuNiAzNS42IDM0LjZDMzUuMyAzNC42IDM1LjIgMzQuNiAzNS4yIDM0LjRaTTQ4LjIgMzEuNkM0Ny43IDMxLjQgNDcuNiAzMS4xIDQ3LjcgMzAuMkM0Ny44IDI5LjkgNDcuOCAyOS4zIDQ3LjggMjlDNDcuNiAyNy43IDQ4LjIgMjcuNCA1MC43IDI3LjdDNTEuOCAyNy44IDUzLjggMjggNTUuMSAyOEM1Ny43IDI4LjIgNTcuOSAyOC4yIDU3LjkgMjguNkM1Ny45IDI5IDU2LjQgMjkuOCA1NC45IDMwLjFDNTQuNSAzMC4yIDUzLjcgMzAuNCA1My4xIDMwLjZDNTIuNSAzMC44IDUxLjYgMzEgNTEuMSAzMS4xQzUwLjYgMzEuMiA0OS45IDMxLjQgNDkuNiAzMS41QzQ5IDMxLjggNDguNiAzMS44IDQ4LjIgMzEuNlpNMjEuOSAzMS41QzIxLjcgMzEuNCAyMS4xIDMxLjMgMjAuNSAzMS4yQzE5LjkgMzEuMSAxOS4yIDMwLjkgMTguOCAzMC43QzE4LjQgMzAuNiAxNy41IDMwLjQgMTYuOSAzMC4yQzEyLjIgMjkuMiAxMi42IDI4LjMgMTcuOCAyNy45QzE5LjMgMjcuOCAyMC44IDI3LjcgMjEuMyAyNy42QzIzLjEgMjcuMiAyMy41IDI3LjYgMjMuNSAyOS44QzIzLjUgMzEuNiAyMy4xIDMyIDIxLjkgMzEuNVpNMzYuOCAzMC4yQzM4LjIgMjkuNiAzNy44IDI4LjYgMzYuMyAyOUMzNS43IDI5LjEgMzUuNSAyOS4xIDM0LjkgMjlDMzQgMjguNyAzMy43IDI4LjggMzMuOCAyOS40QzMzLjggMzAuMiAzNS41IDMwLjcgMzYuOCAzMC4yWk02MC41IDI3LjlDNTkuNSAyNy40IDU4LjIgMjcuMSA1Ni45IDI3QzU0IDI2LjggNTIuNSAyNi42IDUxLjkgMjYuNUM0OS45IDI2IDI2LjYgMjUuNyAyNiAyNi4xQzI1LjkgMjYuMSAyNC43IDI2LjIgMjMuMyAyNi4yQzIxLjkgMjYuMyAxOS42IDI2LjUgMTguMyAyNi42QzE3IDI2LjcgMTUuMyAyNi45IDE0LjUgMjdDMTMuNiAyNy4xIDEyLjggMjcuMiAxMiAyNy41QzkgMjguNSA4LjQgMjcuNSAxMS4xIDI1LjlDMTEuMyAyNS44IDExLjggMjUuNSAxMi4xIDI1LjRDMTIuNCAyNS4yIDEyLjggMjQuOSAxMyAyNC43QzEzLjIgMjQuNSAxMy41IDI0LjMgMTMuOCAyNC4yQzE0LjEgMjQuMSAxNC41IDIzLjggMTQuNyAyMy43QzE1IDIzLjQgMTUuMyAyMy4yIDE2LjggMjIuM0MxNyAyMi4yIDE3LjQgMjEuOSAxNy44IDIxLjdDMTguMSAyMS40IDE4LjYgMjEuMiAxOC44IDIxLjFDMTkuMSAyMSAxOS40IDIwLjggMTkuNiAyMC43QzE5LjggMjAuNSAyMC4zIDIwLjIgMjAuOCAyMC4xQzIxLjIgMTkuOSAyMS45IDE5LjYgMjIuMiAxOS4zQzIyLjYgMTkuMSAyMy4yIDE4LjggMjMuNSAxOC44QzIzLjggMTguNyAyNC40IDE4LjUgMjQuOCAxOC4zQzI1LjEgMTguMSAyNS45IDE3LjggMjYuNSAxNy42QzI3IDE3LjMgMjcuOSAxNyAyOC40IDE2LjlDMjkgMTYuNyAyOS44IDE2LjUgMzAuMyAxNi4zQzMzLjQgMTUuMyAzOS44IDE1LjQgNDEuOSAxNi41QzQyLjIgMTYuNiA0Mi43IDE2LjggNDMgMTYuOUM0My40IDE3IDQzLjkgMTcuMiA0NC4yIDE3LjNDNDQuNSAxNy41IDQ1IDE3LjcgNDUuNCAxNy44QzQ1LjggMTcuOSA0Ni40IDE4LjIgNDYuOCAxOC40QzQ3LjEgMTguNiA0Ny42IDE4LjggNDcuOSAxOC45QzQ4LjIgMTkgNDguNiAxOS4xIDQ4LjkgMTkuMUM0OS4yIDE5LjIgNDkuNSAxOS40IDQ5LjcgMTkuNkM0OS45IDE5LjcgNTAuMyAyMCA1MC42IDIwLjFDNTAuOSAyMC4yIDUxLjMgMjAuNCA1MS40IDIwLjVDNTEuNiAyMC42IDUyIDIwLjkgNTIuMyAyMUM1Mi43IDIxLjIgNTMuMiAyMS41IDUzLjUgMjEuN0M1NC4yIDIyLjEgNTUuMyAyMi44IDU2LjYgMjMuNUM1NyAyMy44IDU3LjcgMjQuMiA1OCAyNC41QzU4LjMgMjQuNyA1OC44IDI1LjEgNTkuMSAyNS4zQzYyIDI3LjMgNjIuMyAyNy42IDYxLjggMjhDNjEuNSAyOC4yIDYxLjIgMjguMiA2MC41IDI3LjlaTTIyLjMgMTQuMkMyMiAxMy43IDIyIDEzLjQgMjIuNiAxMS45QzIzIDEwLjggMjMuNCAxMC4xIDIzLjggOS42QzI0LjkgOC4zIDI1LjkgNy4yIDI2LjQgN0MyNi43IDYuOCAyNy4xIDYuNiAyNy4zIDYuNEMyNy41IDYuMyAyNy45IDYuMSAyOC4zIDZDMjguNyA1LjkgMjkuMyA1LjcgMjkuNiA1LjVDMzAuNSA1IDQxLjEgNSA0MiA1LjVDNDIuNCA1LjcgNDIuOSA2IDQzLjEgNi4xQzQ0LjUgNi42IDQ2LjIgOCA0Ny42IDkuOUM0OC43IDExLjQgNDguNiAxMS4yIDQ4LjkgMTIuNEM0OS40IDE0LjMgNDguOSAxNC43IDQ3LjIgMTMuOEM0Ni43IDEzLjUgNDYuMSAxMy4yIDQ1LjkgMTMuMkM0NS42IDEzLjEgNDUgMTIuOSA0NC40IDEyLjdDNDMuNCAxMi4zIDQyLjUgMTIgNDAuMiAxMS40QzM5LjEgMTEuMSAzNS4xIDEwLjggMzQuNCAxMC45QzM0LjIgMTEgMzMuNSAxMS4xIDMyLjggMTEuMUMzMi4xIDExLjIgMzEuMiAxMS40IDMwLjggMTEuNUMzMC40IDExLjYgMjkuNyAxMS44IDI5LjIgMTEuOUMyOC4zIDEyLjEgMjUuNyAxMyAyNC4yIDEzLjhDMjIuOSAxNC40IDIyLjYgMTQuNSAyMi4zIDE0LjJaIj48L3BhdGg+PC9zdmc+" alt="" width="32" height="32"></span>
+        <span class="brand-logo"><svg class="lg" viewBox="0 0 71 57" aria-hidden="true" focusable="false"><g class="lg-face" mask="url(#lg-m-face)"><use href="#lg-logo" fill="currentColor"/></g><g class="lg-hat"><g mask="url(#lg-m-hat)"><use href="#lg-logo" fill="currentColor"/></g></g></svg></span>
         <b class="brand-name">Oasis Kafe</b>
       </a>
 
