@@ -17,7 +17,7 @@ Desde entonces, todos los cambios se han hecho solo en ese HTML. Lo que hay aqu�
 | Precios de ColaCao (1,90) y chocolate a la taza (2,60) | `oasis_kafe.html` |
 | Retirada de Tartaletas, Bizcocho mini F.S., Madalenas y Brusquetta | `oasis_kafe.html` |
 | Croissant + Txikis unificados a 2,50 | `oasis_kafe.html` |
-| 9 de las 20 fotos (`assets/` solo tiene 11) | `oasis_kafe.html` |
+| 4 de las 12 fotos (`assets/` solo tiene 8): galletas-oasis, tarta-zanahoria, tarta-oreo y tarta-queso | `oasis_kafe.html` |
 
 ## ¿Es peligroso ejecutarlo?
 
@@ -31,7 +31,7 @@ Habría que trasladar a mano al `src/` todos los cambios hechos desde el 2 de se
 La lista completa está en el historial de Git:
 
 ```bash
-git log --oneline 0ff7176..HEAD
+git log --oneline 7f17bca..HEAD
 ```
 
 Las rutas internas de `build.py` son relativas a su propia carpeta, así que sigue
