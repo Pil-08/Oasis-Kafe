@@ -446,10 +446,9 @@ def build(out: Path, bundle: Path | None) -> None:
 
     escribir_atomico(out)
 
-    # docs/index.html YA NO se sobrescribe: ahora contiene la version editada a
-    # mano (oasis_kafe_donostia.html), que es la que publica GitHub Pages.
-    # Si algun dia se quiere volver a publicar la version generada, hay que
-    # copiarla a mano:  cp dist/oasis-kafe.html docs/index.html
+    # docs/index.html NO se toca: lo genera desplegar.ps1 copiando oasis_kafe.html,
+    # que es el fichero maestro que se edita a mano y el que publica Cloudflare Pages.
+    # Este generador quedo desfasado el 2-sep-2026: ver generador-antiguo/LEEME.md.
     pages_out = RAIZ / "docs" / "index.html"
 
     # ---- reporte ----

@@ -9,8 +9,17 @@ node_modules/
 *COPIA*
 *_backup.html
 dist/
+
+# Paquetes de subida manual: docs/ ya es lo que publica Cloudflare, no hace
+# falta empaquetar nada a mano.
+*.zip
+
+# Scripts de publicacion: son de tu ordenador, no del repositorio.
 *.bat
 *.ps1
+
+# El fichero maestro que editas. Lo que se publica es su copia, docs/index.html.
 oasis_kafe.html
-oasis_kafe_donostia.html
-ANALISIS.md
+
+# Material del cliente (catalogo y carta en PDF): se queda en tu ordenador.
+material/
