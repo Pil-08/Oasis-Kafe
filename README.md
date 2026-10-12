@@ -1,12 +1,14 @@
 # Oasis Kafe
 
 La web de una cafetería y pastelería de Antiguo, en Donostia. Tiene la carta entera, con más
-de setenta productos; el horario, con su puntito verde o rojo según estén abiertos o no; y un
+de setenta productos; el horario, con su puntito verde o rojo según estén abiertos o no y una
+esfera que sigue el recorrido del sol a lo largo del día; y un
 carrito que va preparando el pedido para mandarlo por WhatsApp. La interfaz está en castellano,
 euskera, inglés y francés; más de la mitad de los nombres de producto, de momento, solo existen
 en castellano.
 
-**Verla funcionando:** <https://oasis-kafe-web.pages.dev>
+**Verla funcionando:** <https://oasis-kafe-web.pages.dev> (Cloudflare). También está, con la
+misma versión, en GitHub Pages: <https://pil-08.github.io/Oasis-Kafe/>
 
 ## Lo que tiene de particular
 
@@ -29,9 +31,11 @@ existen de verdad, y una etiqueta solo se pone donde el negocio la afirma, de mo
 un botón de «sin gluten» sin dato detrás. Un filtro que promete de más es peor que no tener
 filtro.
 
-La tercera es el movimiento: casi todas las animaciones respetan el «reducir movimiento» que
-el visitante tenga activado en su sistema. La excepción es el donut animado de la portada, que
-sigue moviéndose.
+La tercera es el movimiento: todas las animaciones respetan el «reducir movimiento» que el
+visitante tenga activado en su sistema. Al abrir la web sale una intro de marca de unos cuatro
+segundos, con el sombrero del logo cayendo, que se salta con un toque; con «reducir movimiento»
+se queda en un fundido suave. Desde el rediseño de octubre de 2026 no queda ninguna excepción: el
+donut de la portada dejó de ser un dibujo flotante.
 
 A los buscadores el negocio les llega como datos estructurados (`CafeOrCoffeeShop`, con
 dirección y horario).
@@ -46,6 +50,11 @@ siguen abiertas con el negocio) está en [MANTENIMIENTO.md](MANTENIMIENTO.md).
 La web nació de un generador en Python, que se conserva en `generador-antiguo/`. El 2 de
 septiembre de 2026 se dejó de usar y se pasó a editar el HTML directamente; esa carpeta ya no
 refleja la web actual y se guarda solo como referencia.
+
+En octubre de 2026 se rehízo la portada, los principios, los donuts, «Cómo encontrarnos», la
+cita, el horario y el pie, con la paleta de siempre y un botón de WhatsApp en la portada; la
+carta y el pedido quedaron como estaban. La versión anterior se conserva en la rama
+`respaldo-version-antigua` (etiqueta `respaldo-antes-del-rediseno`).
 
 ## Autoría
 
