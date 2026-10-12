@@ -1619,9 +1619,9 @@ main > .banda:nth-child(7) { --z: 3; }
 .hero2-sol { position: relative; width: min(78vw, 400px); min-width: 0; margin: 0 auto; padding-bottom: 6%; }
 .sol-disc { aspect-ratio: 1; border-radius: 50%; background: var(--arena); padding: clamp(10px, 2.4vw, 22px); }
 .sol-disc img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: var(--pos, center); }
-.sol-sat { position: absolute; right: -4%; bottom: 0; width: 38%; aspect-ratio: 1; border-radius: 50%; background: var(--brand-dark); padding: 6px; }
+.sol-sat { position: absolute; right: -6%; bottom: 0; width: 38%; aspect-ratio: 1; border-radius: 50%; background: var(--brand-dark); padding: 6px; }
 .sol-sat img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; object-position: var(--pos, center); }
-.sello { position: absolute; left: -7%; top: -3%; width: 30%; aspect-ratio: 1; }
+.sello { position: absolute; left: -6%; top: -4%; width: 35%; aspect-ratio: 1; }
 .sello svg { width: 100%; height: 100%; overflow: visible; }
 
 /* ---------- Principios ---------- */
@@ -1714,6 +1714,16 @@ main > .banda:nth-child(7) { --z: 3; }
 .principios .pillar-item::before, .find2 .step-num { font-variation-settings: 'opsz' 96, 'SOFT' 50, 'WONK' 1; }
 
 /* ---------- Pantallas medianas y grandes ---------- */
+/* Una sola columna (menos de 960 px): el círculo de fotos y el anillo del donut van centrados, así que el texto también */
+@media (max-width: 959px) {
+  .hero2-txt { text-align: center; }
+  .hero2-lede { margin-inline: auto; }
+  .hero2-act { justify-content: center; }
+  .hero2 .hero-meta { justify-content: center; }
+  .donuts2-txt { text-align: center; }
+  .donuts2 .donut-flavors { justify-content: center; }
+  .donuts2 .donut-info-card { margin-inline: auto; }
+}
 @media (min-width: 700px) {
   .principios .pillars-grid { grid-template-columns: repeat(4, 1fr); gap: 28px; }
 }
@@ -1860,10 +1870,10 @@ main > .banda:nth-child(7) { --z: 3; }
           <div class="sol-sat"><img id="heroFoto2" alt="" width="400" height="400" decoding="async"></div>
           <div class="sello" aria-hidden="true">
             <svg viewBox="0 0 120 120" focusable="false">
-              <defs><path id="selloCirculo" d="M60 60m-43 0a43 43 0 1 1 86 0a43 43 0 1 1-86 0"/></defs>
+              <defs><path id="selloCirculo" d="M60 60m-45 0a45 45 0 1 1 90 0a45 45 0 1 1-90 0"/></defs>
               <circle cx="60" cy="60" r="60" fill="#523C2A"/>
-              <circle cx="60" cy="60" r="12" fill="#E6BC80"/>
-              <text fill="#FBF7ED" font-family="Karla, sans-serif" font-weight="700" font-size="13.5" letter-spacing="2"><textPath href="#selloCirculo" textLength="263" lengthAdjust="spacing">CAFÉ · MATCHA · CHAI · DONUTS ·</textPath></text>
+              <circle cx="60" cy="60" r="10" fill="#E6BC80"/>
+              <text fill="#FBF7ED" font-family="Karla, sans-serif" font-weight="700" font-size="10.5"><textPath href="#selloCirculo" textLength="280" lengthAdjust="spacing">CAFÉ · BROWNIES · BATIDOS · DONUTS · TARTAS ·</textPath></text>
             </svg>
           </div>
         </div>

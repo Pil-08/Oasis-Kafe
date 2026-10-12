@@ -138,7 +138,7 @@ la paleta (crema, marrón y marrón oscuro de siempre). Solo se añadió un tono
 |---|---|
 | Titular, textos y botones de la portada | `dataI18n` (`h1a`, `h1b`, `lede`, `ctaMenu`, `ctaMap`…). El botón «WhatsApp» no se traduce. |
 | Las dos fotos de la portada | `dataPhotos` → `local`: la **2.ª** (grande) y la **3.ª** (pequeña) de la lista. No hay fotos duplicadas en el HTML. |
-| Palabras del sello circular («CAFÉ · MATCHA · CHAI · DONUTS») | `<textPath>` dentro de `.sello` en la portada. No se traduce. |
+| Palabras del sello circular («CAFÉ · BROWNIES · BATIDOS · DONUTS · TARTAS») | `<textPath>` dentro de `.sello` en la portada. No se traduce. Caben unas 45 letras con la letra a 10,5 y `textLength="280"`; si añades más palabras, baja el `font-size`. |
 | Nombre, descripción y **color** de cada sabor del donut | `FLAVORS` en el JS: `dot` es el color del anillo y del puntito del botón (hoy plátano `#D9A441`, calabaza `#C4622B`, boniato `#8C5340`, manzana `#EBD7AC`). |
 | El horario | `dataHours`: alimenta la tabla, el punto verde/rojo **y la esfera**. La esfera cubre de 6:00 a 22:00; si algún día se abre antes o más tarde, hay que cambiar `polarDia` (los números 360 y 960) y las etiquetas «06:00»/«22:00» del `<svg>` de `.dial`. |
 | El nombre grande del pie | `<svg class="rotulo">` en el `<footer>`: es un SVG con `textLength`, así ocupa justo el ancho en cualquier móvil. |
